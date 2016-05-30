@@ -327,16 +327,11 @@ You may wish to choose a shorter alias such as <em>gl</em>.</p>
 <p><img src="img/heroku_002.png" alt="Figure 3: SSH Keys"></p>
 <p>If keys are not present then generate a set with this command:</p>
 <pre><code>ssh-keygen</code></pre>
-<p>Accept the default prompts and in particular when prompted for a password and to confirm the password simply hit the return key on both occasions but without typing any characters for the password.</p>
+<p>Accept the default prompts but add a password when prompted. </p>
 <ul>
-<li>That is: do <strong>not</strong> password protect the keys.</li>
-<li>Simply hit return each of the three times you are prompted for input:<ul>
-<li>Twice for key file names</li>
-<li>Third time for password</li>
+<li>It is essential that you do not forget this password as doing will will likely require that you, at some stage, will be required to generate new keys.</li>
+<li>One some environments it is possible to use keys that are not password protected. However, you will require password-protected keys when your operating system is a Linux variant.</li>
 </ul>
-</li>
-</ul>
-<p>Check for the presence of keys again:</p>
 <pre><code>ls -l ~/.ssh</code></pre>
 <p>The response should be something like that in Figure 3.</p>
 
