@@ -1,0 +1,3 @@
+Languages
+
+When McCarthy designed Lisp in the late 1950s, it was a radical departure from existing languages, the most important of which was Fortran...

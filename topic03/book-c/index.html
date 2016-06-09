@@ -1,0 +1,358 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+        
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+
+
+    </style>
+
+  </head>
+
+  <body>
+
+    
+
+
+
+  <div class="ui container">
+    
+
+<style>
+  
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      03: Javascript & Maps; MyRent specification.
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    
+      <a class="item" data-tab="MyRent">
+        MyRent
+      </a>
+    
+      <a class="item" data-tab="01">
+        01
+      </a>
+    
+      <a class="item" data-tab="02">
+        02
+      </a>
+    
+      <a class="item" data-tab="03">
+        03
+      </a>
+    
+      <a class="item" data-tab="04">
+        04
+      </a>
+    
+      <a class="item" data-tab="05">
+        05
+      </a>
+    
+    </div>
+</div>
+
+<br><br>
+
+  
+  <div  class="ui tab segment lab" data-tab="MyRent">
+    <h1>Prototype</h1>
+<p><em>myrent</em>, a prototype web application to allow a user to register and authenticate, to gather data on residential properties, to store the data in a database and generate reports on properties located within specified regions.</p>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Introduction</h1>
+<p>Develop <em>myrent</em>, a prototype application, the purpose of which is to allow a user to register, log in and log out, gather data on residential properties, store the data in a database and generate reports.
+.</p>
+<p>This being a prototype, only a subset of the necessary data to define a property should be gathered:</p>
+<ul>
+<li>includes the property&#39;s geolocation</li>
+<li>the occupancy status: whether rented or vacant</li>
+<li>the rent payable</li>
+<li>the number of bedrooms</li>
+<li>the residence type such as apartment, house and so on.</li>
+</ul>
+<p>Develop the project in 4 iterations:</p>
+<ul>
+<li>Each iteration to comprise a completed, working, error-free, part of the application as specified.</li>
+<li>User <em>git</em> to commit each iteration to a single repository named <em>myrent</em> on your BitBucket or other similar account.</li>
+<li>Add tags to each iteration.</li>
+</ul>
+<p>The application is viewable online <a href="http://org-wit-myrent.herokuapp.com/">here</a>.</p>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Iteration v0</h1>
+<p>Develop the <em>sign up</em> and <em>sign in</em> facility.  </p>
+<p>Introduce a model named <em>User</em>:</p>
+<p><img src="img/01.png" alt=""></p>
+<p>A user should be capable of signing on (registering) and logging in. </p>
+<p>It should be possible to open the database and verify that the user is recorded in User.</p>
+<ul>
+<li>Use the H2 console <ul>
+<li>Example: <em>localhost:9000/@db</em></li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Model | View | Controller</em></strong></p>
+<p><strong>Views</strong></p>
+<ul>
+<li>Welcome</li>
+<li>Sign up</li>
+<li>Log in</li>
+</ul>
+<p><strong>Controller</strong></p>
+<ul>
+<li>Accounts</li>
+<li>Home</li>
+</ul>
+<p><strong>Model</strong></p>
+<ul>
+<li>User</li>
+</ul>
+<h2>Iteration v0 views</h2>
+<p><strong>Welcome</strong></p>
+<p><img src="img/04.png" alt=""></p>
+<p><strong>Sign Up</strong></p>
+<p><img src="img/02.png" alt=""></p>
+<p><strong>Log in</strong></p>
+<p><img src="img/03.png" alt=""></p>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Iteration v1</h1>
+<p>Build on iteration v0 by adding </p>
+<ul>
+<li>a residence model, </li>
+<li>an input data controller and </li>
+<li>a view template to accept user data.</li>
+</ul>
+<p><strong><em>Model | View | Controller</em></strong></p>
+<p><strong>Views</strong></p>
+<ul>
+<li>Welcome</li>
+<li>Sign up</li>
+<li>Log in</li>
+<li>InputData</li>
+</ul>
+<p><strong>Model</strong></p>
+<ul>
+<li>User</li>
+<li>Residence</li>
+</ul>
+<p><strong>Controller</strong></p>
+<ul>
+<li>Accounts</li>
+<li>Home</li>
+<li>InputData</li>
+</ul>
+<h2>Additional view iteration v1</h2>
+<p><strong>Input Data</strong></p>
+<p><img src="img/05.png" alt=""></p>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Iteration v2</h1>
+<p>Build on iteration v1 by adding a report view that allows the user to select a circular area within which all properties are listed together with specified attributes as illustated on the screen shot below.</p>
+<p><strong><em>Model | View | Controller</em></strong></p>
+<p><strong>Views</strong></p>
+<ul>
+<li>Welcome</li>
+<li>Sign up</li>
+<li>Log in</li>
+<li>InputData</li>
+<li>Report</li>
+<li>Log out</li>
+</ul>
+<p><strong>Model</strong></p>
+<ul>
+<li>User</li>
+<li>Residence</li>
+</ul>
+<p><strong>Controller</strong></p>
+<ul>
+<li>Accounts</li>
+<li>ReportController</li>
+<li>Home</li>
+<li>InputData</li>
+</ul>
+<h2>Additional views iteration v2</h2>
+<p><strong>Report generation</strong></p>
+<p><img src="img/06.png" alt="Report generate view"></p>
+<p><strong>Report</strong></p>
+<p><img src="img/07.png" alt="Sample report"></p>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Iteration v3</h1>
+<p>This is an optional iteration.</p>
+<p>Complete the application building on iteration v2.</p>
+<p>Provide a template to allow the user send feedback.</p>
+<p>This is an advanced feature.</p>
+<ul>
+<li>Sample code will be provided.</li>
+</ul>
+<p><strong><em>Model | View | Controller</em></strong></p>
+<p><strong>Views</strong></p>
+<ul>
+<li>Welcome</li>
+<li>Sign up</li>
+<li>Log in</li>
+<li>InputData</li>
+<li>Report</li>
+<li>Contact</li>
+<li>Log out</li>
+</ul>
+<p><strong>Model</strong></p>
+<ul>
+<li>User</li>
+<li>Residence</li>
+</ul>
+<p><strong>Controller</strong></p>
+<ul>
+<li>Accounts</li>
+<li>ReportController</li>
+<li>Home</li>
+<li>InputData</li>
+</ul>
+<h2>Additional views iteration v3</h2>
+<p><strong>Contact</strong></p>
+<p><img src="img/08.png" alt=""></p>
+<p><strong>Acknowledgement</strong></p>
+<p><img src="img/09.png" alt=""></p>
+
+  </div>
+ 
+
+
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+
+   </div>
+
+   
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>
+
+    <script>
+      
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+  $('.ui.embed').embed();
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+
+
+})
+
+
+    </script>
+
+  </body>
+ </html>
