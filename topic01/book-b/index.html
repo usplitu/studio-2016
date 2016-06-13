@@ -18,7 +18,7 @@
      <script>hljs.initHighlightingOnLoad();</script>
 
       <style>
-        
+
 
 body 
 {
@@ -40,23 +40,15 @@ figcaption
 {
   min-height:20px;
 }
-
-
     </style>
 
   </head>
 
   <body>
 
-    
-
-
-
   <div class="ui container">
-    
-
 <style>
-  
+
 
 code
 {
@@ -87,8 +79,6 @@ h3
   border-bottom: thin solid black;
 }
 
-
-
 </style>
 
 <div class="ui fixed top pointing inverted menu labmenu">
@@ -99,51 +89,39 @@ h3
     </a>
   </header>
   <div class="right tab-menu menu">
-    
-      <a class="item" data-tab="Donation">
+    <a class="active item" data-tab="Donation">
         Donation
-      </a>
-    
+    </a>
       <a class="item" data-tab="01">
         01
       </a>
-    
       <a class="item" data-tab="02">
         02
       </a>
-    
       <a class="item" data-tab="03">
         03
       </a>
-    
       <a class="item" data-tab="04">
         04
       </a>
-    
       <a class="item" data-tab="05">
         05
       </a>
-    
       <a class="item" data-tab="06">
         06
       </a>
-    
       <a class="item" data-tab="Appendix">
         Appendix
       </a>
-    
     </div>
 </div>
 
 <br><br>
 
-  
   <div  class="ui tab segment lab" data-tab="Donation">
     <h1>Prototype</h1>
 <p>Develop a dynamic web application called <em>donation</em> that will allow a user to register, log in and log out, make donations and print a report of all donations.</p>
-
   </div>
- 
   <div  class="ui tab segment lab" data-tab="01">
     <h1>Introduction</h1>
 <p>Design and implement a dynamic web application called <em>donation</em> in accordance with the brief that follows in a series of screen shots.</p>
@@ -157,30 +135,34 @@ h3
 </li>
 <li>Launch <em>donation</em> using the <em>play run</em> command within the application folder and open the application from within a browser. </li>
 <li>Where the iteration uses a model you should inspect the model and its various tables (localhost:9000/@db).</li>
-<li><p>Although you will use the <em>git</em> application to store your work in a repository, you are recommended to independently archive each iteration until you are sufficiently confident in using <em>git</em>.</p>
+<li>
+<p>Although you will use the <em>git</em> application to store your work in a repository, you are recommended to independently archive each iteration until you are sufficiently confident in using <em>git</em>.</p>
 </li>
-<li><p>Solutions will be provided for each iteration.</p>
+<li>
+<p>Solutions will be provided for each iteration.</p>
 </li>
 </ul>
 <p>A sample completed application may be viewed live <a href="http://donation-v4.herokuapp.com/">here</a>.</p>
 <p>A description on how to debug into a Play app within Eclipse is available <a href="archives/Howto_Eclipse_debugger.pdf">here</a>.</p>
 <p>Use <em>git</em> to create a history of the application by creating a local repository named <em>donation</em> and committing and tagging each of the iterations v0 to v4 inclusive. Here is example code applicable to the first iteration.</p>
 <pre><code>git add .
-git commit -m &#39;iteration  v0&#39;
-git tag -a v0 -m &#39;v0&#39;
-git push &amp;&amp; git push --tags</code></pre>
+git commit -m 'iteration  v0'
+git tag -a v0 -m 'v0'
+git push &amp;&amp; git push --tags
 
+</code></pre>
   </div>
- 
   <div  class="ui tab segment lab" data-tab="02">
     <h1>Iteration v0</h1>
 <ul>
-<li><p>Develop the <em>sign up</em> and <em>sign in</em> facilities.</p>
+<li>
+<p>Develop the <em>sign up</em> and <em>sign in</em> facilities.</p>
 </li>
-<li><p>Introduce a model named <em>User</em>:</p>
+<li>
+<p>Introduce a model named <em>User</em>:</p>
 </li>
 </ul>
-<p><img src="img/user-model.jpg" alt=""></p>
+<p><img alt="" src="img/user-model.jpg"></p>
 <p>A user should be capable of signing up (registering) and signing in. It should be possible to open the database and verify that the user is recorded in User.</p>
 <h2>Model | View | Controller</h2>
 <p><strong>Views</strong></p>
@@ -201,13 +183,11 @@ git push &amp;&amp; git push --tags</code></pre>
 <p>Information relevant to this iteration is available <a href="archives/c-sessions.pdf">here</a> (<em>How to Make an Application out of a Web Page</em> by E.de Leastar).</p>
 <h2>Completed Iteration</h2>
 <p><strong>Sign Up page</strong></p>
-<p><img src="img/signup.jpg" alt=""></p>
+<p><img alt="" src="img/signup.jpg"></p>
 <p><strong>Sign in page</strong></p>
-<p><img src="img/login.jpg" alt=""></p>
-<p><img src="img/v0-package-explorer.png" alt="Figure 1: Directory structure"></p>
-
+<p><img alt="" src="img/login.jpg"></p>
+<p><img alt="Figure 1: Directory structure" src="img/v0-package-explorer.png"></p>
   </div>
- 
   <div  class="ui tab segment lab" data-tab="03">
     <h1>Iteration v1</h1>
 <ul>
@@ -230,21 +210,19 @@ git push &amp;&amp; git push --tags</code></pre>
 <h2>Completed Iteration</h2>
 <p>Here are the screen shots for this iteration.</p>
 <p><strong>Welcome page</strong></p>
-<p><img src="img/welcome.jpg" alt=""></p>
+<p><img alt="" src="img/welcome.jpg"></p>
 <p><strong>Sign Up page</strong></p>
-<p><img src="img/signup.jpg" alt=""></p>
+<p><img alt="" src="img/signup.jpg"></p>
 <p><strong>Sign in page</strong></p>
-<p><img src="img/login.jpg" alt=""></p>
+<p><img alt="" src="img/login.jpg"></p>
 <p><strong>Donate Page</strong></p>
-<p><img src="img/donation-placeholder.jpg" alt=""></p>
-<p><img src="img/v1-package-explorer.png" alt="Figure 1: Directory structure"></p>
-
+<p><img alt="" src="img/donation-placeholder.jpg"></p>
+<p><img alt="Figure 1: Directory structure" src="img/v1-package-explorer.png"></p>
   </div>
- 
   <div  class="ui tab segment lab" data-tab="04">
     <h1>Iteration v2</h1>
 <p>Introduce a model named <em>Donation</em>:</p>
-<p><img src="img/donation-model.jpg" alt=""></p>
+<p><img alt="" src="img/donation-model.jpg"></p>
 <p>Set up a one to many relationship between User and Donation respectively.</p>
 <h2>Model | View | Controller</h2>
 <p><strong>Views</strong></p>
@@ -271,27 +249,30 @@ git push &amp;&amp; git push --tags</code></pre>
 <h2>Completed Iteration</h2>
 <p>Here are the screen shots for this iteration.</p>
 <p><strong>Welcome page</strong></p>
-<p><img src="img/welcome.jpg" alt=""></p>
+<p><img alt="" src="img/welcome.jpg"></p>
 <p><strong>Sign Up page</strong></p>
-<p><img src="img/signup.jpg" alt=""></p>
+<p><img alt="" src="img/signup.jpg"></p>
 <p><strong>Sign in page</strong></p>
-<p><img src="img/login.jpg" alt=""></p>
+<p><img alt="" src="img/login.jpg"></p>
 <p><strong>Donate Page</strong></p>
-<p><img src="img/donate.png" alt=""></p>
-<p><img src="img/v2-package-explorer.png" alt="Figure 1: Directory structure"></p>
+<p><img alt="" src="img/donate.png"></p>
+<p><img alt="Figure 1: Directory structure" src="img/v2-package-explorer.png"></p>
 <h2>HTML Controls</h2>
 <p>These are examples of the use of controls used in the application based on material in <a href="http://www.w3schools.com/html/html_forms.asp">W3Schools</a>.  </p>
 <ul>
-<li><p><strong>Checkbox</strong>  </p>
-<p>  <img src="img/checkbox.jpg" alt="Figure 1: Checkbox"></p>
+<li>
+<p><strong>Checkbox</strong>  </p>
+<p><img alt="Figure 1: Checkbox" src="img/checkbox.jpg"></p>
 </li>
-<li><p><strong>Radio buttons</strong>  </p>
-<p>  <img src="img/radiobuttons.jpg" alt="Figure 2: Radio Buttons">  </p>
+<li>
+<p><strong>Radio buttons</strong>  </p>
+<p><img alt="Figure 2: Radio Buttons" src="img/radiobuttons.jpg">  </p>
 </li>
-<li><p><strong>Drop down list</strong></p>
-<p>Here is sample code from W3Schools that you could modify to suit this application. </p>
+<li>
+<p><strong>Drop down list</strong></p>
 </li>
 </ul>
+<p>Here is sample code from W3Schools that you could modify to suit this application. </p>
 <pre><code>  &lt;form action=&quot;&quot;&gt;
     &lt;select name=&quot;cars&quot;&gt;
       &lt;option value=&quot;volvo&quot;&gt;Volvo&lt;/option&gt;
@@ -299,10 +280,12 @@ git push &amp;&amp; git push --tags</code></pre>
       &lt;option value=&quot;fiat&quot; selected&gt;Fiat&lt;/option&gt;
       &lt;option value=&quot;audi&quot;&gt;Audi&lt;/option&gt;
     &lt;/select&gt;
-  &lt;/form&gt;</code></pre>
+  &lt;/form&gt;
+</code></pre>
+
 <p>A better choice, perhaps, would be to use <a href="http://semantic-ui.com/modules/checkbox.html#/definition">Semantic UI controls</a>.</p>
-<p><img src="img/01.png" alt="Figure 3: Semantic UI checkbox"></p>
-<p><img src="img/02.png" alt="Figure 4: Semantic UI radio buttons"></p>
+<p><img alt="Figure 3: Semantic UI checkbox" src="img/01.png"></p>
+<p><img alt="Figure 4: Semantic UI radio buttons" src="img/02.png"></p>
 <p>Here is Semantic UI dropdown <a href="http://semantic-ui.com/modules/dropdown.html#/usage">sample code</a>:</p>
 <pre><code>&lt;div class=&quot;ui dropdown&quot;&gt;
   &lt;div class=&quot;text&quot;&gt;Select&lt;/div&gt;
@@ -311,17 +294,16 @@ git push &amp;&amp; git push --tags</code></pre>
     &lt;div class=&quot;item&quot; data-value=&quot;option1&quot;&gt;Option 1&lt;/div&gt;
     &lt;div class=&quot;item&quot; data-value=&quot;option2&quot;&gt;Option 2&lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
+&lt;/div&gt;
+</code></pre>
   </div>
- 
   <div  class="ui tab segment lab" data-tab="05">
     <h2>Iteration v3</h2>
 <p>Introduce a progress bar in the Donation template which illustrates the proportion of the donation target achieved to date. </p>
 <p>Update the progress bar immediately following the making of a new donation.</p>
 <p>Create a method in the DonationController that will query the Donation model for a list of donations, calculate the percentage this constitutes of the donation target and render this percentage to the progress bar.</p>
 <p>The donation target may be an arbitray hard-coded number, say $20,000.</p>
-<p><img src="img/progress-bar.jpg" alt=""></p>
+<p><img alt="" src="img/progress-bar.jpg"></p>
 <h1>Model | View | Controller</h1>
 <p><strong>Views</strong></p>
 <ul>
@@ -345,34 +327,36 @@ git push &amp;&amp; git push --tags</code></pre>
 <h2>Completed Iteration</h2>
 <p>Here are the screen shots for this iteration.</p>
 <p><strong>Welcome page</strong></p>
-<p><img src="img/welcome.jpg" alt=""></p>
+<p><img alt="" src="img/welcome.jpg"></p>
 <p><strong>Sign Up page</strong></p>
-<p><img src="img/signup-v3.jpg" alt=""></p>
+<p><img alt="" src="img/signup-v3.jpg"></p>
 <p><strong>Sign in page</strong></p>
-<p><img src="img/login-v3.jpg" alt=""></p>
+<p><img alt="" src="img/login-v3.jpg"></p>
 <p><strong>Donate Page</strong></p>
-<p><img src="img/donate-v3.jpg" alt=""></p>
-<p><img src="img/v3-package-explorer.png" alt="Figure 1: Directory structure"></p>
+<p><img alt="" src="img/donate-v3.jpg"></p>
+<p><img alt="Figure 1: Directory structure" src="img/v3-package-explorer.png"></p>
 <h2>Progress bar</h2>
-<p>  The progress bar provides a visual feedback to each client of the total amount currently donated expressed as a percentage of the target amount.
+<p>The progress bar provides a visual feedback to each client of the total amount currently donated expressed as a percentage of the target amount.
   One method of implementing the progress bar is to use Semantic UI, information on which is available <a href="http://semantic-ui.com/elements/progress.html">here</a></p>
-<p>  Here is a code snippet which shows the control syntax with a fixed value for the progress (20%).</p>
+<p>Here is a code snippet which shows the control syntax with a fixed value for the progress (20%).</p>
 <pre><code>&lt;div class=&quot;ui successful progress&quot;&gt;
   &lt;div class=&quot;bar&quot; style=&quot;width:20%&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+</code></pre>
+
 <p>We, however, require that the progress bar be updated dynamically by pushing the appropriate value from the server after each contribution. In the code snippet that follows this dynamic value is transported in the variable <em>progressPercent</em>.    </p>
 <pre><code>  &lt;div class=&quot;ui successful progress&quot;&gt;
     &lt;div class=&quot;bar&quot; style=&quot;width:${progress}&quot;&gt;&lt;/div&gt;
-  &lt;/div&gt;</code></pre>
+  &lt;/div&gt;
+</code></pre>
+
 <p>Your task is to calculate the value of <strong>progressPercent</strong> following each donation and render this value in the progress bar in the view template. </p>
 <p>Note that when you have calculated the percentage figure (in a controller) you should then append the percent sign (%) to comply with the formatting requirements of the Semantic UI progress bar.</p>
-
   </div>
- 
   <div  class="ui tab segment lab" data-tab="06">
     <h2>Iteration v4</h2>
 <p>Introduce a report template.</p>
-<p><img src="img/report-sample.jpg" alt=""></p>
+<p><img alt="" src="img/report-sample.jpg"></p>
 <p>Output the table of donations and corresponding donors when the report template page is accessed.</p>
 <h2>Model | View | Controller</h2>
 <p><strong>Views</strong></p>
@@ -398,20 +382,18 @@ git push &amp;&amp; git push --tags</code></pre>
 <h2>Completed iteration</h2>
 <p>Here are the screen shots for this iteration (which represents the completed prototype).</p>
 <p><strong>Welcome page</strong></p>
-<p><img src="img/welcome-v4.jpg" alt=""></p>
+<p><img alt="" src="img/welcome-v4.jpg"></p>
 <p><strong>Sign Up page</strong></p>
-<p><img src="img/signup.jpg" alt=""></p>
+<p><img alt="" src="img/signup.jpg"></p>
 <p><strong>Sign in page</strong></p>
-<p><img src="img/login.jpg" alt=""></p>
+<p><img alt="" src="img/login.jpg"></p>
 <p><strong>Donate Page</strong></p>
-<p><img src="img/donate.jpg" alt=""></p>
+<p><img alt="" src="img/donate.jpg"></p>
 <p><strong>Report Page</strong></p>
-<p><img src="img/report.jpg" alt=""></p>
+<p><img alt="" src="img/report.jpg"></p>
 <p>You may view a live version of this, the final project, <a href="http://org-wit-donation.herokuapp.com/">here</a>, hosted on Heroku.</p>
-<p><img src="img/v4-package-explorer.png" alt="Figure 1: Directory structure"></p>
-
+<p><img alt="Figure 1: Directory structure" src="img/v4-package-explorer.png"></p>
   </div>
- 
   <div  class="ui tab segment lab" data-tab="Appendix">
     <h1>Semantic Dropdown</h1>
 <p>Figure 1 illustrates the relationships between the various components associated with a <a href="http://semantic-ui.com/modules/dropdown.html">Semantic UI dropdown</a>.</p>
@@ -419,12 +401,8 @@ git push &amp;&amp; git push --tags</code></pre>
 <p>Validation could be added to the same file. For example, you might wish that a dropdown selection had been made before the Donate button responded on being pressed. This will be addressed in a later lab.</p>
 <p>Note the close coupling between the controller and the dropdown by studying the parameters of the method donate.</p>
 <p>Invoking the JavaScript method <em>dropdown()</em> is necessary to acivate the dropdown box.</p>
-<p><img src="img/dropdown.png" alt="Figure 1: Semantic UI dropdown"></p>
-
+<p><img alt="Figure 1: Semantic UI dropdown" src="img/dropdown.png"></p>
   </div>
- 
-
-
 <script>
 $('.ui.menu .item')
   .tab({
@@ -433,10 +411,10 @@ $('.ui.menu .item')
   })
 ;
 </script>
-
    </div>
 
-   
+
+
   <br><br>
   <div class="ui bottom fixed borderless menu">
     <div class="ui small item">
@@ -447,14 +425,11 @@ $('.ui.menu .item')
      </a>
      </p>
     </div>
-  </div>
+  </div>    <script>
 
-    <script>
-      
 $(document).ready(function()
 {
   $("img").addClass ("ui image");
-  $('.ui.embed').embed();
 
   var images = $(".lab img");
   jQuery.each(images, function(i)  {
@@ -467,12 +442,7 @@ $(document).ready(function()
       $(div_label).insertBefore(images[i]);
     }
   });
-
-
-})
-
-
-    </script>
+})    </script>
 
   </body>
  </html>

@@ -18,7 +18,7 @@
      <script>hljs.initHighlightingOnLoad();</script>
 
       <style>
-        
+
 
 body 
 {
@@ -40,23 +40,15 @@ figcaption
 {
   min-height:20px;
 }
-
-
     </style>
 
   </head>
 
   <body>
 
-    
-
-
-
   <div class="ui container">
-    
-
 <style>
-  
+
 
 code
 {
@@ -87,8 +79,6 @@ h3
   border-bottom: thin solid black;
 }
 
-
-
 </style>
 
 <div class="ui fixed top pointing inverted menu labmenu">
@@ -99,359 +89,190 @@ h3
     </a>
   </header>
   <div class="right tab-menu menu">
-    
-      <a class="item" data-tab="JavaScript III (Maps)">
-        JavaScript III (Maps)
-      </a>
-    
+    <a class="active item" data-tab="MyRent">
+        MyRent
+    </a>
       <a class="item" data-tab="01">
         01
       </a>
-    
       <a class="item" data-tab="02">
         02
       </a>
-    
       <a class="item" data-tab="03">
         03
       </a>
-    
       <a class="item" data-tab="04">
         04
       </a>
-    
       <a class="item" data-tab="05">
         05
       </a>
-    
     </div>
 </div>
 
 <br><br>
 
-  
-  <div  class="ui tab segment lab" data-tab="JavaScript III (Maps)">
-    <h1>Objectives</h1>
-<p>Demonstrate how to embed a map in a web page and add a marker or overlay. Enable the marker so that it may be dragged and dropped. Capture the marker&#39;s geolocation and dynamically display this on the webpage.</p>
-
+  <div  class="ui tab segment lab" data-tab="MyRent">
+    <h1>Prototype</h1>
+<p><em>myrent</em>, a prototype web application to allow a user to register and authenticate, to gather data on residential properties, to store the data in a database and generate reports on properties located within specified regions.</p>
   </div>
- 
   <div  class="ui tab segment lab" data-tab="01">
     <h1>Introduction</h1>
-<p><strong>History</strong></p>
-<p><a href="http://jquery.com/">JQuery </a>is a cross-platform JavaScript library developed by John Resig and first released in 2006.</p>
-<p>It is now used by in excess of <a href="http://en.wikipedia.org/wiki/JQuery">80% of the 10,000 most visited websites</a>.</p>
-<p>Presently it is supported by a team of developers.</p>
-<p>The most recent major release (2.1) is dated January 2014.</p>
-<p><strong>Some jQuery advantages</strong></p>
-<p>jQuery allows one to quickly and easily perform many actions on web page elements. For example:</p>
+<p>Develop <em>myrent</em>, a prototype application, the purpose of which is to allow a user to register, log in and log out, gather data on residential properties, store the data in a database and generate reports.
+.</p>
+<p>This being a prototype, only a subset of the necessary data to define a property should be gathered:</p>
 <ul>
-<li>It allows a developer to ignore browser differences.</li>
-<li>Facilitates manipulation of specific elements in the webpage (<a href="http://stackoverflow.com/questions/4976344/what-is-dom-summary-and-importance">DOM</a> manipulation), for example:<ul>
-<li>Make images appear and disappear.</li>
-<li>Select and animate some text.</li>
-<li>Change the styling of a section of a web page.</li>
-<li>Enable and disable various elements as buttons, dropdown lists and so on.</li>
+<li>includes the property's geolocation</li>
+<li>the occupancy status: whether rented or vacant</li>
+<li>the rent payable</li>
+<li>the number of bedrooms</li>
+<li>the residence type such as apartment, house and so on.</li>
 </ul>
-</li>
-<li>Facilitates use of Ajax.<ul>
-<li>Asynchronous JavaScript and XML (Ajax) is a set of techniques that allows, for example, a sub-set of a webpage to be refreshed with data from the server without interfering with the rest of the page.</li>
-<li>In the pre-Ajax era even a change to a single piece of data on a web page would require an entire page refresh.</li>
-</ul>
-</li>
-</ul>
-<p><strong>Some jQuery disadvantages</strong></p>
+<p>Develop the project in 4 iterations:</p>
 <ul>
-<li>A jQuery javascript file is required on the client side.<ul>
-<li>Loading this file takes time and imposes some demands on the client computer.</li>
-<li>The jQuery file is big. The uncompressed version 2.1.1 exceeds 9000 lines of code. </li>
-<li>The minified version is, obviously, much more compact.</li>
+<li>Each iteration to comprise a completed, working, error-free, part of the application as specified.</li>
+<li>User <em>git</em> to commit each iteration to a single repository named <em>myrent</em> on your BitBucket or other similar account.</li>
+<li>Add tags to each iteration.</li>
 </ul>
-</li>
-</ul>
-
+<p>The application is viewable online <a href="http://org-wit-myrent.herokuapp.com/">here</a>.</p>
   </div>
- 
   <div  class="ui tab segment lab" data-tab="02">
-    <h1>GoogleMap</h1>
-<p>We shall demonstrate the use of JavaScript and jQuery with a simple example relating to the MyRent application, the subject of one of the ICTSkills Studio (2014) labs.</p>
-<p>In the example we shall:</p>
+    <h1>Iteration v0</h1>
+<p>Develop the <em>sign up</em> and <em>sign in</em> facility.  </p>
+<p>Introduce a model named <em>User</em>:</p>
+<p><img alt="" src="img/01.png"></p>
+<p>A user should be capable of signing on (registering) and logging in. </p>
+<p>It should be possible to open the database and verify that the user is recorded in User.</p>
 <ul>
-<li>Use the <a href="https://developers.google.com/maps/documentation/javascript/tutorial#Audience">Hello World</a> Google Map example.</li>
-<li>Modify the Google html file by moving the embedded JavaScript code to an external file.</li>
-<li>Modify the JavaScript file to centre the map on the WIT Campus</li>
-<li>Add an overlay marker, located on the centre of the map.</li>
-<li>Enable the marker to be dragged to a new location.</li>
-<li>Capture the coordinates (latitude and longitude) of the current position of the marker.</li>
+<li>Use the H2 console <ul>
+<li>Example: <em>localhost:9000/@db</em></li>
 </ul>
-<p>Obtain code from <a href="https://developers.google.com/maps/documentation/javascript/tutorial#Audience">here</a> </p>
-<p>Here is the html file in which we have made the following changes:</p>
+</li>
+</ul>
+<p><strong><em>Model | View | Controller</em></strong></p>
+<p><strong>Views</strong></p>
 <ul>
-<li>The LatLng parameters are the coordinates of the WIT West Campus.</li>
-<li>The zoom level is increased to 12.</li>
+<li>Welcome</li>
+<li>Sign up</li>
+<li>Log in</li>
 </ul>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no&quot; /&gt;
-    &lt;style type=&quot;text/css&quot;&gt;
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
-    &lt;/style&gt;
-    &lt;script src=&quot;https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&quot;&gt;&lt;/script&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-      function initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng(52.254427, -7.185281),
-          zoom: 12
-        };
-        var map = new google.maps.Map(document.getElementById(&quot;map-canvas&quot;),
-            mapOptions);
-      }
-      google.maps.event.addDomListener(window, &#39;load&#39;, initialize);
-    &lt;/script&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;div id=&quot;map-canvas&quot;/&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>Add to a file, save as <em>inputdata.html</em> and open in a browser.</p>
-<p>A map similar to that depicted in Figure 1 should be displayed.</p>
-<p><img src="img/01.png" alt="Figure 1: WIT Campus"></p>
-
+<p><strong>Controller</strong></p>
+<ul>
+<li>Accounts</li>
+<li>Home</li>
+</ul>
+<p><strong>Model</strong></p>
+<ul>
+<li>User</li>
+</ul>
+<h2>Iteration v0 views</h2>
+<p><strong>Welcome</strong></p>
+<p><img alt="" src="img/04.png"></p>
+<p><strong>Sign Up</strong></p>
+<p><img alt="" src="img/02.png"></p>
+<p><strong>Log in</strong></p>
+<p><img alt="" src="img/03.png"></p>
   </div>
- 
   <div  class="ui tab segment lab" data-tab="03">
-    <h1>External JavaScript File</h1>
+    <h1>Iteration v1</h1>
+<p>Build on iteration v0 by adding </p>
 <ul>
-<li>In this step remove the script from the html file and locate in an external file.</li>
-<li>Move the script calls to the end of the body of the html file.<ul>
-<li>Two calls, one for Google Map API, the other to load the external file.</li>
+<li>a residence model, </li>
+<li>an input data controller and </li>
+<li>a view template to accept user data.</li>
 </ul>
-</li>
-</ul>
-<p>Here is the refactored html:</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no&quot; /&gt;
-    &lt;style type=&quot;text/css&quot;&gt;
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
-    &lt;/style&gt; 
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;div id=&quot;map-canvas&quot;/&gt;
-    &lt;script src=&quot;https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;js/map.js&quot;&gt;&lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>Observe that the external file is named <em>map.js</em> and is located in a folder named <em>js</em> that is placed at the same level as the html file. </p>
+<p><strong><em>Model | View | Controller</em></strong></p>
+<p><strong>Views</strong></p>
 <ul>
-<li>In other words, the folder <em>js</em> is in the same folder as the html file.</li>
+<li>Welcome</li>
+<li>Sign up</li>
+<li>Log in</li>
+<li>InputData</li>
 </ul>
-<p>File: <em>map.js</em></p>
-<pre><code>function initialize() 
-{
-    const mapOptions = 
-    {
-        center : new google.maps.LatLng(52.254427, -7.185281),
-        zoom : 12
-    };
-    const map = new google.maps.Map(document.getElementById(&quot;map-canvas&quot;),
-            mapOptions);
-}
-google.maps.event.addDomListener(window, &#39;load&#39;, initialize);</code></pre>
-<p>A few words of explanation:</p>
+<p><strong>Model</strong></p>
 <ul>
-<li>Notice the following: </li>
+<li>User</li>
+<li>Residence</li>
 </ul>
-<p>In the html file:</p>
-<pre><code>    &lt;div id=&quot;map-canvas&quot;/&gt;</code></pre>
-<p><strong>map-canvas</strong> is the id of the element on the canvas on which the map shall be rendered.</p>
-<p>In the script file:</p>
-<pre><code>document.getElementById(&quot;map-canvas&quot;)</code></pre>
-<p>This is the first argument in the method call <em>google.maps.Map(...)</em> and informs the Google API where the map is to be rendered.</p>
-<p>Open <em>inputdata.html</em> in a browser. </p>
+<p><strong>Controller</strong></p>
 <ul>
-<li>The result should be unchanged.</li>
+<li>Accounts</li>
+<li>Home</li>
+<li>InputData</li>
 </ul>
-
+<h2>Additional view iteration v1</h2>
+<p><strong>Input Data</strong></p>
+<p><img alt="" src="img/05.png"></p>
   </div>
- 
   <div  class="ui tab segment lab" data-tab="04">
-    <h1>Add Map Marker</h1>
-<p>In this step we shall make the following changes and additions:</p>
+    <h1>Iteration v2</h1>
+<p>Build on iteration v1 by adding a report view that allows the user to select a circular area within which all properties are listed together with specified attributes as illustated on the screen shot below.</p>
+<p><strong><em>Model | View | Controller</em></strong></p>
+<p><strong>Views</strong></p>
 <ul>
-<li>Increase the zoom from 12 to 16.</li>
-<li>Change the map type from ROADMAP to SATELLITE.</li>
-<li>Create a an overlay (a marker) with the following properties:<ul>
-<li>Position same as centre of map.</li>
-<li>Make the marker draggable thus allowing a user to position it where it wishes on the canvas.</li>
-<li>Place the marker on the map.</li>
+<li>Welcome</li>
+<li>Sign up</li>
+<li>Log in</li>
+<li>InputData</li>
+<li>Report</li>
+<li>Log out</li>
 </ul>
-</li>
+<p><strong>Model</strong></p>
+<ul>
+<li>User</li>
+<li>Residence</li>
 </ul>
-<p>The html file (inputdata.html) remains unchanged.</p>
-<p>Here is the refactored <em>map.js</em>:</p>
-<pre><code>function initialize() 
-{
-    const latlng = new google.maps.LatLng(52.254427, -7.185281);
-
-    // place a marker
-    const marker = new google.maps.Marker({
-        map         : map,
-        draggable   : true,
-        position    : latlng,
-        title       : &quot;Drag and drop on your property!&quot;
-    });
-
-    const mapOptions = 
-    {
-        center      : new google.maps.LatLng(latlng.lat(), latlng.lng()),
-        mapTypeId   : google.maps.MapTypeId.SATELLITE,
-        zoom        : 16
-    };
-    const map = new google.maps.Map(document.getElementById(&quot;map-canvas&quot;),
-            mapOptions);
-
-    // To add the marker to the map, call setMap();
-    marker.setMap(map); 
-}
-google.maps.event.addDomListener(window, &#39;load&#39;, initialize);</code></pre>
-<p>Notice that we have created a <a href="https://developers.google.com/maps/documentation/javascript/reference#LatLng">LatLng</a> object and used its accessors in the map constructor when creating the <em>mapOptions</em> object:</p>
-<pre><code>const latlng = new google.maps.LatLng(52.254427, -7.185281);</code></pre>
-<pre><code>    const mapOptions = 
-    {
-        center      : new google.maps.LatLng(latlng.lat(), latlng.lng()),
-        mapTypeId   : google.maps.MapTypeId.SATELLITE,
-        zoom        : 16
-    };</code></pre>
-<p>Open (or refresh) <em>inputdata.html</em> and observe something similar to that shown in Figure 1.</p>
-<p><img src="img/02.png" alt="Figure 1: Overlay marker added &amp; maptype changed to satellite"></p>
-
+<p><strong>Controller</strong></p>
+<ul>
+<li>Accounts</li>
+<li>ReportController</li>
+<li>Home</li>
+<li>InputData</li>
+</ul>
+<h2>Additional views iteration v2</h2>
+<p><strong>Report generation</strong></p>
+<p><img alt="Report generate view" src="img/06.png"></p>
+<p><strong>Report</strong></p>
+<p><img alt="Sample report" src="img/07.png"></p>
   </div>
- 
   <div  class="ui tab segment lab" data-tab="05">
-    <h1>Marker position</h1>
-<p>In this step we shall </p>
+    <h1>Iteration v3</h1>
+<p>This is an optional iteration.</p>
+<p>Complete the application building on iteration v2.</p>
+<p>Provide a template to allow the user send feedback.</p>
+<p>This is an advanced feature.</p>
 <ul>
-<li>Insert an input field in the html file.<ul>
-<li>Dynamically display the position of the marker in the input field which we shall set as read-only.</li>
+<li>Sample code will be provided.</li>
 </ul>
-</li>
-<li>Add code to capture the geolocation of the marker at the point at which the marker is dropped.<ul>
-<li>Add a listener in the JavaScript file (map.js) to detect when the marker is dropped.</li>
-<li>Use jQuery to transmit the marker position to the input field in the web page when the marker is dropped.</li>
-</ul>
-</li>
-</ul>
-<p>Add this line to the html at the top of the body:</p>
-<pre><code>    &lt;input type=&quot;text&quot; id=&quot;geolocation&quot; value=&quot;52.254427, -7.185281&quot; readonly class=&quot;input-medium&quot;&gt;</code></pre>
-<p>Note the the value string above is just, at this point, a default placeholder: the following would equally work (omitting <em>value</em>):</p>
-<pre><code>    &lt;input type=&quot;text&quot; id=&quot;geolocation&quot; readonly class=&quot;input-medium&quot;&gt;</code></pre>
-<p>Add the listener to <em>map.js</em> at the end of the <em>initialize</em> function:</p>
-<pre><code>//marker listener populates hidden fields ondragend
-google.maps.event.addListener(marker, &#39;dragend&#39;, function() {
-  const latLng = marker.getPosition();
-  const latlong = latLng.lat().toString().substring(0,10) + &#39;,&#39; + latLng.lng().toString().substring(0,10);
-  //publish lat long in geolocation control in html page
-  $(&quot;#geolocation&quot;).val(latlong);
-  //update the new marker position
-  map.setCenter(latLng);
-});</code></pre>
-<p>The refactored html code is as follows:</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no&quot; /&gt;
-    &lt;style type=&quot;text/css&quot;&gt;
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
-    &lt;/style&gt; 
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;input type=&quot;text&quot; id=&quot;geolocation&quot; value=&quot;53.347298,-6.268344&quot; readonly class=&quot;input-medium&quot;&gt;  
-    &lt;div id=&quot;map-canvas&quot;/&gt;
-    &lt;script src=&quot;https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;js/jquery-2.2.3.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;js/map.js&quot;&gt;&lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<p>Here is <em>map.js</em>:</p>
-<pre><code>function initialize() 
-{
-    const latlng = new google.maps.LatLng(52.254427, -7.185281);
-
-    // place a marker
-    const marker = new google.maps.Marker({
-        map         : map,
-        position    : latlng,
-        title       : &quot;Drag and drop on your property!&quot;,
-        draggable   : true
-    });
-
-    const mapOptions = 
-    {
-        center      : new google.maps.LatLng(latlng.lat(), latlng.lng()),
-        mapTypeId   : google.maps.MapTypeId.SATELLITE,
-        zoom        : 16
-    };
-    const map = new google.maps.Map(document.getElementById(&quot;map-canvas&quot;),
-            mapOptions);
-
-    // This adds the marker to the map
-    marker.setMap(map); 
-
-  //marker listener populates hidden fields ondragend
-    google.maps.event.addListener(marker, &#39;dragend&#39;, function() {
-        const latLng = marker.getPosition();
-        const latlong = latLng.lat().toString().substring(0,10) + &#39;,&#39; + latLng.lng().toString().substring(0,10);
-        //publish lat long in geolocation control in html page
-        $(&quot;#geolocation&quot;).val(latlong);
-        //update the new marker position
-        map.setCenter(latLng);
-      });
-
-}
-google.maps.event.addDomListener(window, &#39;load&#39;, initialize);</code></pre>
-<p>Observe the line:</p>
-<pre><code>  $(&quot;#geolocation&quot;).val(latlong);</code></pre>
-<p>This is a method call on a jQuery object.</p>
+<p><strong><em>Model | View | Controller</em></strong></p>
+<p><strong>Views</strong></p>
 <ul>
-<li><p>You can obtain a copy of jquery online or from a local archive <a href="archives/jquery.zip">here</a></p>
-</li>
-<li><p>The jQuery object is $(&quot;#geolocation&quot;).</p>
+<li>Welcome</li>
+<li>Sign up</li>
+<li>Log in</li>
+<li>InputData</li>
+<li>Report</li>
+<li>Contact</li>
+<li>Log out</li>
+</ul>
+<p><strong>Model</strong></p>
 <ul>
-<li><em>geolocation</em> is the <em>id</em> of the <em>div</em> in the html file where the data will be written.</li>
-<li>The data to be written is the parameter of the method <em>val</em>, namely <em>latlong</em>.</li>
-<li><em>latlng</em> is an object of type <em>LatLng</em> and contains the geolocation of the marker.</li>
+<li>User</li>
+<li>Residence</li>
 </ul>
-</li>
-</ul>
-<p>As an aside (optional), note that you could replace the line:</p>
-<pre><code>    const map = new google.maps.Map(document.getElementById(&quot;map-canvas&quot;), mapOptions);</code></pre>
-<p>with the line</p>
-<pre><code>    const map = new google.maps.Map($(&quot;#map-canvas&quot;).get(0), mapOptions);</code></pre>
-<p>The latter uses jQuery to obtain the DOM element.</p>
-<p>The expression</p>
-<pre><code>$(&quot;#map-canvas&quot;)</code></pre>
-<p>returns the DOM element but wrapped in a jQuery object. To access the DOM element use the associative array <em>get</em> method with parameter zero since we know only one element returned.</p>
-<pre><code>$(&quot;#map-canvas&quot;).get(0)</code></pre>
-<p>See <a href="http://stackoverflow.com/questions/4069982/document-getelementbyid-vs-jquery">here</a> for further information.</p>
-<p>When you have refactored the code as described open <em>inputdata.html</em> in a brower and experiment by dragging the marker to various locations. </p>
+<p><strong>Controller</strong></p>
 <ul>
-<li>Notice how the marker coordinates (displayed near the top of the map) change the moment the marker is dropped (Figure 1).
-<img src="img/03.png" alt="Figure 1: On dropping marker its position dynamically published"></li>
+<li>Accounts</li>
+<li>ReportController</li>
+<li>Home</li>
+<li>InputData</li>
 </ul>
-
+<h2>Additional views iteration v3</h2>
+<p><strong>Contact</strong></p>
+<p><img alt="" src="img/08.png"></p>
+<p><strong>Acknowledgement</strong></p>
+<p><img alt="" src="img/09.png"></p>
   </div>
- 
-
-
 <script>
 $('.ui.menu .item')
   .tab({
@@ -460,10 +281,10 @@ $('.ui.menu .item')
   })
 ;
 </script>
-
    </div>
 
-   
+
+
   <br><br>
   <div class="ui bottom fixed borderless menu">
     <div class="ui small item">
@@ -474,14 +295,11 @@ $('.ui.menu .item')
      </a>
      </p>
     </div>
-  </div>
+  </div>    <script>
 
-    <script>
-      
 $(document).ready(function()
 {
   $("img").addClass ("ui image");
-  $('.ui.embed').embed();
 
   var images = $(".lab img");
   jQuery.each(images, function(i)  {
@@ -494,12 +312,7 @@ $(document).ready(function()
       $(div_label).insertBefore(images[i]);
     }
   });
-
-
-})
-
-
-    </script>
+})    </script>
 
   </body>
  </html>

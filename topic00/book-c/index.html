@@ -18,7 +18,7 @@
      <script>hljs.initHighlightingOnLoad();</script>
 
       <style>
-        
+
 
 body 
 {
@@ -40,23 +40,15 @@ figcaption
 {
   min-height:20px;
 }
-
-
     </style>
 
   </head>
 
   <body>
 
-    
-
-
-
   <div class="ui container">
-    
-
 <style>
-  
+
 
 code
 {
@@ -87,8 +79,6 @@ h3
   border-bottom: thin solid black;
 }
 
-
-
 </style>
 
 <div class="ui fixed top pointing inverted menu labmenu">
@@ -99,49 +89,36 @@ h3
     </a>
   </header>
   <div class="right tab-menu menu">
-    
-      <a class="item" data-tab="Outline">
+    <a class="active item" data-tab="Outline">
         Outline
-      </a>
-    
+    </a>
       <a class="item" data-tab="Timeline">
         Timeline
       </a>
-    
       <a class="item" data-tab="Assignment_Grading">
         Assignment_Grading
       </a>
-    
     </div>
 </div>
 
 <br><br>
 
-  
   <div  class="ui tab segment lab" data-tab="Outline">
     <h1>Outline</h1>
 <p>Here we present an outline timeline and the assignment grading rubric.</p>
-
   </div>
- 
   <div  class="ui tab segment lab" data-tab="Timeline">
     <h1>Timeline</h1>
-<p><img src="img/01.png" alt="ICTSkills (2016) Studio Timeline"></p>
-
+<p><img alt="ICTSkills (2016) Studio Timeline" src="img/01.png"></p>
   </div>
- 
   <div  class="ui tab segment lab" data-tab="Assignment_Grading">
     <h1>Assignment</h1>
 <p>The assignment will comprise adding a series of stories to one of the three web apps presented during the course.</p>
 <p>Figure 1 illustrates a provisional grading schema applicable where the subject of the assignment is Donation.</p>
 <p>In previous years Donation was the base web app for the assignment.</p>
-<p>It is probable that a different app will form the base for this year&#39;s assignment. </p>
-<p><img src="img/02.png" alt="Figure 1: ICTSkills (2016) Studio Assignment Grading Rubric"></p>
-
+<p>It is probable that a different app will form the base for this year's assignment. </p>
+<p><img alt="Figure 1: ICTSkills (2016) Studio Assignment Grading Rubric" src="img/02.png"></p>
   </div>
- 
-
-
 <script>
 $('.ui.menu .item')
   .tab({
@@ -150,10 +127,10 @@ $('.ui.menu .item')
   })
 ;
 </script>
-
    </div>
 
-   
+
+
   <br><br>
   <div class="ui bottom fixed borderless menu">
     <div class="ui small item">
@@ -164,14 +141,11 @@ $('.ui.menu .item')
      </a>
      </p>
     </div>
-  </div>
+  </div>    <script>
 
-    <script>
-      
 $(document).ready(function()
 {
   $("img").addClass ("ui image");
-  $('.ui.embed').embed();
 
   var images = $(".lab img");
   jQuery.each(images, function(i)  {
@@ -184,12 +158,7 @@ $(document).ready(function()
       $(div_label).insertBefore(images[i]);
     }
   });
-
-
-})
-
-
-    </script>
+})    </script>
 
   </body>
  </html>
