@@ -797,7 +797,7 @@ console.log(foo); // logs &quot;world&quot;
 
 <pre><code class="javascript">// Functions can see changes in variable values after the function is defined
 function myFunction()  {
-  const foo = &quot;hello&quot;;
+  let foo = &quot;hello&quot;;
   function myFn()  {
     console.log(foo);
   };
@@ -809,35 +809,66 @@ const f = myFunction();
 f(); // &quot;world&quot;
 </code></pre>
 
-<pre><code class="javascript">// Scope insanity
-// a self-executing anonymous function
-(function() {
-  const baz = 1;
-  function bim() {
-    alert(baz);
+<h1></h1>
+<pre><code class="javascript">/**
+ * Scope insanity
+ * Immediately invoked function expression (IIFE)
+ * a self-executing anonymous function
+ */
+
+(function () {
+
+  var baz = 100;
+
+  var bim = function () {
+    console.log(baz);
   };
 
-  function bar() {
-    alert(baz);
+  bar = function () {
+    console.log(baz);
   };
 
-})();
+}());
 
-// baz is not defined outside of the function
-console.log(baz);
+/**
+ * The function bar() is defined outside of the anonymous function
+ * because it wasn't declared with var and is therefore an implied global.
+ * This is not recommended practice: adding to the global namespace.
+ * And bar() has access to baz because outer function variables (and parameters) are available 
+ * to inner functions: this is referred to as closure.
+ */
+bar(); // =&gt; 100
+</code></pre>
 
-// bar is defined outside of the anonymous function
-// because it wasn't declared with var; furthermore,
-// because it was defined in the same scope as baz,
-// it has access to baz even though other code
-// outside of the function does not
-bar();
+<p>Attempting to access baz outside the IIFE above will fail:</p>
+<pre><code>(function () {
+...
+...
+}());
 
-// bim is not defined outside of the anonymous function,
-// so this will result in an error
+/**
+ * var baz has function scope and is not visible outside the function.
+ * Therefore attemting to access it here will generate an error:
+ * Uncaught ReferenceError: baz is not defined
+ */
+console.log(baz); // Uncaught ReferenceError: baz is not defined
+</code></pre>
+
+<p>The function bim() is also undefined outside the IIFE and so attempted invocation will fail.</p>
+<pre><code>(function () {
+...
+...
+}());
+
+/**
+ * bim() is not defined outside of the anonymous function,
+ * An attempt to invoke it will fail with this error:
+ * Uncaught ReferenceError: baz is not defined
+ */
 bim();
 </code></pre>
 
+<p>All of the above behaviour applies in non-strict mode. Where ES6 strict mode is applied, the IIFE above will fail, generating an error warning that bar is not defined. That is, bar may no longer be defined as an implied global variable - which can only be good.</p>
 <h2>Exercie 5.8</h2>
 <p>Take the each of the above code fragements separately, </p>
 <ul>
