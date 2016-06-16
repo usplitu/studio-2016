@@ -7,15 +7,16 @@
   </div>
 </div>
 <script>
-$.ajax({
-  type: 'GET',
-  url: '//usplitu.github.io/studio-2016/
-topic03/indexmoodle.html',
-  xhrFields: {
-    withCredentials: false
-  },
-  success: function(data) {
-   $('#output').contents().find('html').html(data);
-  }
-});
+
+  $.ajax({
+    type: 'GET',
+    url: '//usplitu.github.io/studio-2016//topic03/indexmoodle.html',
+    xhrFields: {
+      withCredentials: false
+    },
+    success: function (data) {
+      $('#output').contents().find('html').html(data);
+    }
+  });
+
 </script>

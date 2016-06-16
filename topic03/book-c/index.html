@@ -18,7 +18,7 @@
      <script>hljs.initHighlightingOnLoad();</script>
 
       <style>
-
+        
 
 body 
 {
@@ -40,15 +40,23 @@ figcaption
 {
   min-height:20px;
 }
+
+
     </style>
 
   </head>
 
   <body>
 
-  <div class="ui container">
-<style>
+    
 
+
+
+  <div class="ui container">
+    
+
+<style>
+  
 
 code
 {
@@ -79,6 +87,8 @@ h3
   border-bottom: thin solid black;
 }
 
+
+
 </style>
 
 <div class="ui fixed top pointing inverted menu labmenu">
@@ -89,33 +99,43 @@ h3
     </a>
   </header>
   <div class="right tab-menu menu">
-    <a class="active item" data-tab="JavaScript IV (Maps)">
+    
+      <a class="item" data-tab="JavaScript IV (Maps)">
         JavaScript IV (Maps)
-    </a>
+      </a>
+    
       <a class="item" data-tab="01">
         01
       </a>
+    
       <a class="item" data-tab="02">
         02
       </a>
+    
       <a class="item" data-tab="03">
         03
       </a>
+    
       <a class="item" data-tab="04">
         04
       </a>
+    
       <a class="item" data-tab="05">
         05
       </a>
+    
     </div>
 </div>
 
 <br><br>
 
+  
   <div  class="ui tab segment lab" data-tab="JavaScript IV (Maps)">
     <h1>Objectives</h1>
-<p>Demonstrate how to embed a map in a web page and add a marker or overlay. Enable the marker so that it may be dragged and dropped. Capture the marker's geolocation and dynamically display this on the webpage.</p>
+<p>Demonstrate how to embed a map in a web page and add a marker or overlay. Enable the marker so that it may be dragged and dropped. Capture the marker&#39;s geolocation and dynamically display this on the webpage.</p>
+
   </div>
+ 
   <div  class="ui tab segment lab" data-tab="01">
     <h1>Introduction</h1>
 <p><strong>History</strong></p>
@@ -149,7 +169,9 @@ h3
 </ul>
 </li>
 </ul>
+
   </div>
+ 
   <div  class="ui tab segment lab" data-tab="02">
     <h1>GoogleMap</h1>
 <p>We shall demonstrate the use of JavaScript and jQuery with a simple example relating to the MyRent application, the subject of one of the ICTSkills Studio (2014) labs.</p>
@@ -187,19 +209,19 @@ h3
         var map = new google.maps.Map(document.getElementById(&quot;map-canvas&quot;),
             mapOptions);
       }
-      google.maps.event.addDomListener(window, 'load', initialize);
+      google.maps.event.addDomListener(window, &#39;load&#39;, initialize);
     &lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
     &lt;div id=&quot;map-canvas&quot;/&gt;
   &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
+&lt;/html&gt;</code></pre>
 <p>Add to a file, save as <em>inputdata.html</em> and open in a browser.</p>
 <p>A map similar to that depicted in Figure 1 should be displayed.</p>
-<p><img alt="Figure 1: WIT Campus" src="img/01.png"></p>
+<p><img src="img/01.png" alt="Figure 1: WIT Campus"></p>
+
   </div>
+ 
   <div  class="ui tab segment lab" data-tab="03">
     <h1>External JavaScript File</h1>
 <ul>
@@ -225,9 +247,7 @@ h3
     &lt;script src=&quot;https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&quot;&gt;&lt;/script&gt;
     &lt;script src=&quot;js/map.js&quot;&gt;&lt;/script&gt;
   &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
+&lt;/html&gt;</code></pre>
 <p>Observe that the external file is named <em>map.js</em> and is located in a folder named <em>js</em> that is placed at the same level as the html file. </p>
 <ul>
 <li>In other words, the folder <em>js</em> is in the same folder as the html file.</li>
@@ -243,29 +263,24 @@ h3
     const map = new google.maps.Map(document.getElementById(&quot;map-canvas&quot;),
             mapOptions);
 }
-google.maps.event.addDomListener(window, 'load', initialize);
-</code></pre>
-
+google.maps.event.addDomListener(window, &#39;load&#39;, initialize);</code></pre>
 <p>A few words of explanation:</p>
 <ul>
 <li>Notice the following: </li>
 </ul>
 <p>In the html file:</p>
-<pre><code>    &lt;div id=&quot;map-canvas&quot;/&gt;
-</code></pre>
-
+<pre><code>    &lt;div id=&quot;map-canvas&quot;/&gt;</code></pre>
 <p><strong>map-canvas</strong> is the id of the element on the canvas on which the map shall be rendered.</p>
 <p>In the script file:</p>
-<pre><code>document.getElementById(&quot;map-canvas&quot;)
-
-</code></pre>
-
+<pre><code>document.getElementById(&quot;map-canvas&quot;)</code></pre>
 <p>This is the first argument in the method call <em>google.maps.Map(...)</em> and informs the Google API where the map is to be rendered.</p>
 <p>Open <em>inputdata.html</em> in a browser. </p>
 <ul>
 <li>The result should be unchanged.</li>
 </ul>
+
   </div>
+ 
   <div  class="ui tab segment lab" data-tab="04">
     <h1>Add Map Marker</h1>
 <p>In this step we shall make the following changes and additions:</p>
@@ -305,24 +320,20 @@ google.maps.event.addDomListener(window, 'load', initialize);
     // To add the marker to the map, call setMap();
     marker.setMap(map); 
 }
-google.maps.event.addDomListener(window, 'load', initialize);
-</code></pre>
-
+google.maps.event.addDomListener(window, &#39;load&#39;, initialize);</code></pre>
 <p>Notice that we have created a <a href="https://developers.google.com/maps/documentation/javascript/reference#LatLng">LatLng</a> object and used its accessors in the map constructor when creating the <em>mapOptions</em> object:</p>
-<pre><code>const latlng = new google.maps.LatLng(52.254427, -7.185281);
-</code></pre>
-
+<pre><code>const latlng = new google.maps.LatLng(52.254427, -7.185281);</code></pre>
 <pre><code>    const mapOptions = 
     {
         center      : new google.maps.LatLng(latlng.lat(), latlng.lng()),
         mapTypeId   : google.maps.MapTypeId.SATELLITE,
         zoom        : 16
-    };
-</code></pre>
-
+    };</code></pre>
 <p>Open (or refresh) <em>inputdata.html</em> and observe something similar to that shown in Figure 1.</p>
-<p><img alt="Figure 1: Overlay marker added &amp; maptype changed to satellite" src="img/02.png"></p>
+<p><img src="img/02.png" alt="Figure 1: Overlay marker added &amp; maptype changed to satellite"></p>
+
   </div>
+ 
   <div  class="ui tab segment lab" data-tab="05">
     <h1>Marker position</h1>
 <p>In this step we shall </p>
@@ -338,25 +349,19 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </li>
 </ul>
 <p>Add this line to the html at the top of the body:</p>
-<pre><code>    &lt;input type=&quot;text&quot; id=&quot;geolocation&quot; value=&quot;52.254427, -7.185281&quot; readonly class=&quot;input-medium&quot;&gt;  
-</code></pre>
-
+<pre><code>    &lt;input type=&quot;text&quot; id=&quot;geolocation&quot; value=&quot;52.254427, -7.185281&quot; readonly class=&quot;input-medium&quot;&gt;</code></pre>
 <p>Note the the value string above is just, at this point, a default placeholder: the following would equally work (omitting <em>value</em>):</p>
-<pre><code>    &lt;input type=&quot;text&quot; id=&quot;geolocation&quot; readonly class=&quot;input-medium&quot;&gt;  
-</code></pre>
-
+<pre><code>    &lt;input type=&quot;text&quot; id=&quot;geolocation&quot; readonly class=&quot;input-medium&quot;&gt;</code></pre>
 <p>Add the listener to <em>map.js</em> at the end of the <em>initialize</em> function:</p>
 <pre><code>//marker listener populates hidden fields ondragend
-google.maps.event.addListener(marker, 'dragend', function() {
+google.maps.event.addListener(marker, &#39;dragend&#39;, function() {
   const latLng = marker.getPosition();
-  const latlong = latLng.lat().toString().substring(0,10) + ',' + latLng.lng().toString().substring(0,10);
+  const latlong = latLng.lat().toString().substring(0,10) + &#39;,&#39; + latLng.lng().toString().substring(0,10);
   //publish lat long in geolocation control in html page
   $(&quot;#geolocation&quot;).val(latlong);
   //update the new marker position
   map.setCenter(latLng);
-});
-</code></pre>
-
+});</code></pre>
 <p>The refactored html code is as follows:</p>
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -375,9 +380,7 @@ google.maps.event.addListener(marker, 'dragend', function() {
     &lt;script src=&quot;js/jquery-2.2.3.js&quot;&gt;&lt;/script&gt;
     &lt;script src=&quot;js/map.js&quot;&gt;&lt;/script&gt;
   &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
+&lt;/html&gt;</code></pre>
 <p>Here is <em>map.js</em>:</p>
 <pre><code>function initialize() 
 {
@@ -404,9 +407,9 @@ google.maps.event.addListener(marker, 'dragend', function() {
     marker.setMap(map); 
 
   //marker listener populates hidden fields ondragend
-    google.maps.event.addListener(marker, 'dragend', function() {
+    google.maps.event.addListener(marker, &#39;dragend&#39;, function() {
         const latLng = marker.getPosition();
-        const latlong = latLng.lat().toString().substring(0,10) + ',' + latLng.lng().toString().substring(0,10);
+        const latlong = latLng.lat().toString().substring(0,10) + &#39;,&#39; + latLng.lng().toString().substring(0,10);
         //publish lat long in geolocation control in html page
         $(&quot;#geolocation&quot;).val(latlong);
         //update the new marker position
@@ -414,20 +417,14 @@ google.maps.event.addListener(marker, 'dragend', function() {
       });
 
 }
-google.maps.event.addDomListener(window, 'load', initialize);
-</code></pre>
-
+google.maps.event.addDomListener(window, &#39;load&#39;, initialize);</code></pre>
 <p>Observe the line:</p>
-<pre><code>  $(&quot;#geolocation&quot;).val(latlong);
-</code></pre>
-
+<pre><code>  $(&quot;#geolocation&quot;).val(latlong);</code></pre>
 <p>This is a method call on a jQuery object.</p>
 <ul>
-<li>
-<p>You can obtain a copy of jquery online or from a local archive <a href="archives/jquery.zip">here</a></p>
+<li><p>You can obtain a copy of jquery online or from a local archive <a href="archives/jquery.zip">here</a></p>
 </li>
-<li>
-<p>The jQuery object is $("#geolocation").</p>
+<li><p>The jQuery object is $(&quot;#geolocation&quot;).</p>
 <ul>
 <li><em>geolocation</em> is the <em>id</em> of the <em>div</em> in the html file where the data will be written.</li>
 <li>The data to be written is the parameter of the method <em>val</em>, namely <em>latlong</em>.</li>
@@ -436,30 +433,25 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </li>
 </ul>
 <p>As an aside (optional), note that you could replace the line:</p>
-<pre><code>    const map = new google.maps.Map(document.getElementById(&quot;map-canvas&quot;), mapOptions);
-</code></pre>
-
+<pre><code>    const map = new google.maps.Map(document.getElementById(&quot;map-canvas&quot;), mapOptions);</code></pre>
 <p>with the line</p>
-<pre><code>    const map = new google.maps.Map($(&quot;#map-canvas&quot;).get(0), mapOptions);
-</code></pre>
-
+<pre><code>    const map = new google.maps.Map($(&quot;#map-canvas&quot;).get(0), mapOptions);</code></pre>
 <p>The latter uses jQuery to obtain the DOM element.</p>
 <p>The expression</p>
-<pre><code>$(&quot;#map-canvas&quot;)
-
-</code></pre>
-
+<pre><code>$(&quot;#map-canvas&quot;)</code></pre>
 <p>returns the DOM element but wrapped in a jQuery object. To access the DOM element use the associative array <em>get</em> method with parameter zero since we know only one element returned.</p>
-<pre><code>$(&quot;#map-canvas&quot;).get(0)
-</code></pre>
-
+<pre><code>$(&quot;#map-canvas&quot;).get(0)</code></pre>
 <p>See <a href="http://stackoverflow.com/questions/4069982/document-getelementbyid-vs-jquery">here</a> for further information.</p>
 <p>When you have refactored the code as described open <em>inputdata.html</em> in a brower and experiment by dragging the marker to various locations. </p>
 <ul>
 <li>Notice how the marker coordinates (displayed near the top of the map) change the moment the marker is dropped (Figure 1).
-<img alt="Figure 1: On dropping marker its position dynamically published" src="img/03.png"></li>
+<img src="img/03.png" alt="Figure 1: On dropping marker its position dynamically published"></li>
 </ul>
+
   </div>
+ 
+
+
 <script>
 $('.ui.menu .item')
   .tab({
@@ -468,10 +460,10 @@ $('.ui.menu .item')
   })
 ;
 </script>
+
    </div>
 
-
-
+   
   <br><br>
   <div class="ui bottom fixed borderless menu">
     <div class="ui small item">
@@ -482,11 +474,14 @@ $('.ui.menu .item')
      </a>
      </p>
     </div>
-  </div>    <script>
+  </div>
 
+    <script>
+      
 $(document).ready(function()
 {
   $("img").addClass ("ui image");
+  $('.ui.embed').embed();
 
   var images = $(".lab img");
   jQuery.each(images, function(i)  {
@@ -499,7 +494,12 @@ $(document).ready(function()
       $(div_label).insertBefore(images[i]);
     }
   });
-})    </script>
+
+
+})
+
+
+    </script>
 
   </body>
  </html>

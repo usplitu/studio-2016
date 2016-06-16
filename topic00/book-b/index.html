@@ -18,7 +18,7 @@
      <script>hljs.initHighlightingOnLoad();</script>
 
       <style>
-
+        
 
 body 
 {
@@ -40,15 +40,23 @@ figcaption
 {
   min-height:20px;
 }
+
+
     </style>
 
   </head>
 
   <body>
 
-  <div class="ui container">
-<style>
+    
 
+
+
+  <div class="ui container">
+    
+
+<style>
+  
 
 code
 {
@@ -79,6 +87,8 @@ h3
   border-bottom: thin solid black;
 }
 
+
+
 </style>
 
 <div class="ui fixed top pointing inverted menu labmenu">
@@ -89,21 +99,27 @@ h3
     </a>
   </header>
   <div class="right tab-menu menu">
-    <a class="active item" data-tab="Venue">
+    
+      <a class="item" data-tab="Venue">
         Venue
-    </a>
+      </a>
+    
       <a class="item" data-tab="Directions">
         Directions
       </a>
+    
     </div>
 </div>
 
 <br><br>
 
+  
   <div  class="ui tab segment lab" data-tab="Venue">
     <h1>Venue</h1>
 <p>The course will be run on Tuesdays and Wednesdays and industry presentations will take place on Thursdays in the boardroom at Carriganore. You may view maps of the location and route in the next step. Accommodation will also be available elsewhere for work on Mondays and Fridays and for the period between the end of the course and beginning of the autumn semester at a venue or venues to be advised.</p>
+
   </div>
+ 
   <div  class="ui tab segment lab" data-tab="Directions">
     <h1>Directions</h1>
 <p>Waterford Institute of Technology, </p>
@@ -111,10 +127,14 @@ h3
 <p>Carriganore.</p>
 <p>The GPS coordinates are, approximately, (52.253671, -7.187513).</p>
 <p>Maps below provide further information on location.</p>
-<p><img alt="" src="img/01.png"></p>
-<p><img alt="" src="img/02.png"></p>
-<p><img alt="" src="img/03.png"></p>
+<p><img src="img/01.png" alt=""></p>
+<p><img src="img/02.png" alt=""></p>
+<p><img src="img/03.png" alt=""></p>
+
   </div>
+ 
+
+
 <script>
 $('.ui.menu .item')
   .tab({
@@ -123,10 +143,10 @@ $('.ui.menu .item')
   })
 ;
 </script>
+
    </div>
 
-
-
+   
   <br><br>
   <div class="ui bottom fixed borderless menu">
     <div class="ui small item">
@@ -137,11 +157,14 @@ $('.ui.menu .item')
      </a>
      </p>
     </div>
-  </div>    <script>
+  </div>
 
+    <script>
+      
 $(document).ready(function()
 {
   $("img").addClass ("ui image");
+  $('.ui.embed').embed();
 
   var images = $(".lab img");
   jQuery.each(images, function(i)  {
@@ -154,7 +177,12 @@ $(document).ready(function()
       $(div_label).insertBefore(images[i]);
     }
   });
-})    </script>
+
+
+})
+
+
+    </script>
 
   </body>
  </html>

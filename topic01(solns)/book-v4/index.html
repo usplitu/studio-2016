@@ -1,0 +1,286 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+        
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+
+
+    </style>
+
+  </head>
+
+  <body>
+
+    
+
+
+
+  <div class="ui container">
+    
+
+<style>
+  
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      01: Donation (Solutions)
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    
+      <a class="item" data-tab="Solution-v4">
+        Solution-v4
+      </a>
+    
+      <a class="item" data-tab="01">
+        01
+      </a>
+    
+    </div>
+</div>
+
+<br><br>
+
+  
+  <div  class="ui tab segment lab" data-tab="Solution-v4">
+    <h1>Solution v4</h1>
+<p><strong>Step-by-step guide to building Donation application.</strong></p>
+<ul>
+<li>Iteration v4<ul>
+<li>Report</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Iteration v4</h1>
+<p>This, the final iteration, is built on v3 and adds a reporting facility.</p>
+<p><strong>Features of iteration v4</strong></p>
+<p>Welcome</p>
+<p>Sign on</p>
+<p>Sign in</p>
+<p>Donation</p>
+<p>Sign out</p>
+<p>Report</p>
+<p><strong>Report</strong></p>
+<p>The additional feature in this iteration is a report generator.</p>
+<p>We require something similar that that shown in Figure 1.</p>
+<p><img src="img/v4/report.jpg" alt="Figure 1: Sample report"></p>
+<p>Add a <em>Report</em> controller:</p>
+<pre><code>package controllers;
+
+import java.util.List;
+
+import models.Donation;
+import play.mvc.*;
+
+public class Report extends Controller
+{
+  public static void index()
+  {
+    List&lt;Donation&gt; donations = Donation.findAll();
+    render(donations);
+  }
+}</code></pre>
+<p>Create a corresponding <em>views/Report</em> folder.</p>
+<ul>
+<li>In the folder create a file <em>index.html</em> with the following content:</li>
+</ul>
+<p>Filename: views/Report/index.html</p>
+<pre><code class="lang-html">
+#{extends &#39;main.html&#39; /} 
+#{set title:&#39;Report&#39; /} 
+  &lt;nav class=&quot;ui menu&quot;&gt;
+    &lt;a class=&quot;ui item&quot; href=&quot;/&quot;&gt;Home&lt;/a&gt;
+    &lt;a class=&quot;ui item&quot; href=&quot;/signup&quot;&gt;Sign Up&lt;/a&gt;
+    &lt;a class=&quot;ui item&quot; href=&quot;/login&quot;&gt;Log In&lt;/a&gt;
+    &lt;a class=&quot;ui item&quot; href=&quot;/donation&quot;&gt;Make Donation&lt;/a&gt;
+    &lt;a class=&quot;ui active item&quot; href=&quot;/report&quot;&gt;Report&lt;/a&gt;
+    &lt;a class=&quot;ui item&quot; href=&quot;/logout&quot;&gt;Log Out&lt;/a&gt;
+  &lt;/nav&gt;
+
+&lt;section class=&quot;ui segment&quot;&gt;
+  &lt;div class=&quot;ui raised segment&quot;&gt;  
+    &lt;h4&gt;List Donations&lt;/h4&gt;   
+    &lt;table class=&quot;ui table segment&quot;&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;Donors&lt;/th&gt;
+          &lt;th&gt;Amount($)&lt;/th&gt;
+          &lt;th&gt;Method donated&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+      #{list items:donations, as:&#39;donation&#39;}
+        &lt;tr&gt;
+          &lt;td&gt;${donation.from.firstName}&amp;nbsp${donation.from.lastName}&lt;/td&gt;
+          &lt;td&gt;${donation.received}&lt;/td&gt;
+          &lt;td&gt;${donation.methodDonated}&lt;/td&gt;
+        &lt;/tr&gt;
+      #{/list}
+      &lt;/tbody&gt;
+    &lt;/table&gt;   
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+<p>Add the following to the navigation bar in the DonationController.index.html to facilitate routing to the report template:</p>
+<pre><code class="lang-html">
+    &lt;a class=&quot;ui item&quot; href=&quot;/report&quot;&gt;Report&lt;/a&gt;</code></pre>
+<p>Lastly, in the routes file, define the association to route the report request to the controller:</p>
+<pre><code class="lang-routes">
+#Report
+GET    /report                                  Report.index</code></pre>
+<p>This concludes iteration v4, the final iteration of Donation. </p>
+<ul>
+<li>It contains the source code for the final build and</li>
+<li>may be imported as a project into Eclipse.</li>
+</ul>
+<p>You may view a live version of this iteration hosted on Heroku <a href="http://org-wit-donation.herokuapp.com/">here</a>.</p>
+<p>Commit this iteration to your <em>donation</em> repository, add a tag and push all to remote repo.</p>
+<pre><code>git add .
+git commit -m &#39;iteration  v4&#39;
+git tag -a v4 -m &#39;iteration v4&#39;
+git push &amp;&amp; git push --tags</code></pre>
+<p>An archived version of the git repository of the completed project is available <a href="archive/donationSolutions.zip">here</a>.</p>
+<ul>
+<li>Download the archive and expand.</li>
+<li>Change into the <em>donationSolutions</em> folder in a <em>git</em> terminal.</li>
+<li>Populate the folder with the command:<ul>
+<li><em>git checkout -f</em></li>
+</ul>
+</li>
+<li>Execute <em>git tag</em><ul>
+<li>You should be presented with 5 tags, v0, v1, v2, v3, v4</li>
+</ul>
+</li>
+<li>Checkout each tag in turn in the <em>git</em> terminal and in a separate terminal in the same folder (in Windows a DOS terminal), execute <em>play run</em> and view the application in a browser at the standard local host address (port 9000).</li>
+</ul>
+
+  </div>
+ 
+
+
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+
+   </div>
+
+   
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>
+
+    <script>
+      
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+  $('.ui.embed').embed();
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+
+
+})
+
+
+    </script>
+
+  </body>
+ </html>
