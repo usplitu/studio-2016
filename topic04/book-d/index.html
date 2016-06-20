@@ -248,6 +248,18 @@ $(&#39;.ui.submit.button&#39;).click(function () {
     obj.put(&quot;progress&quot;, getProgress());
     renderJSON(obj);
   }</code></pre>
+<p>And <code>getProgress</code>:</p>
+<pre><code>    private static String getProgress()
+    {
+      String currentCandidateEmail = session.get(&quot;currentCandidate&quot;);
+      Candidate candidate = Candidate.findByEmail(currentCandidateEmail);
+      String donationprogress = &quot;0&quot;;
+      if (candidate != null)
+      {
+        donationprogress = CandidateController.percentDonationTargetReached(candidate);
+      }
+      return donationprogress;
+    }</code></pre>
 <p>Import the JSONObject:</p>
 <pre><code>import org.json.simple.JSONObject;</code></pre>
 <p>Place the <a href="archives/json-simple-1.1.jar">json-simple-1.1.jar</a> in a new folder <em>lib</em> in the root of the project.</p>

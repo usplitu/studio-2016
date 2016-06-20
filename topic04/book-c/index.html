@@ -136,6 +136,10 @@ h3
         08
       </a>
     
+      <a class="item" data-tab="Appendix">
+        Appendix
+      </a>
+    
     </div>
 </div>
 
@@ -144,7 +148,7 @@ h3
   
   <div  class="ui tab segment lab" data-tab="JavaScript VI (SemanticUI)">
     <h1>Validation &amp; Progress Bar</h1>
-<p>Semantic elements such as dropdown and radio button require initialization. Semantic also facilitates form validation. In this short tutorial a dropdown is initialized, form validation is invoked and use of a Semantic progress bar is demonstrated. jQuery ajax is employed to fetch and render data.</p>
+<p>Semantic elements such as dropdown and radio button require initialization. Semantic also facilitates form validation. In this short tutorial a dropdown is initialized, form validation is invoked and use of a Semantic progress bar is demonstrated. jQuery ajax is employed to fetch and render data. <span style="color:red">Warning:</span> This lab applies to Semantic UI version 1x. See the appendix for Semantic 2 material.</p>
 
   </div>
  
@@ -590,6 +594,70 @@ $(&#39;.ui.form&#39;)
 
 &lt;!-- See: http://semantic-ui.com/modules/progress.html --&gt;
 &lt;!-- See: http://semantic-ui.com/modules/progress.html#/usage --&gt;</code></pre>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="Appendix">
+    <h1>Semantic 2</h1>
+<p>The validation code applicable for Semantic 2 has changed.</p>
+<p>Here is sample code. Compare to version 1 validation code. Here the form parameter is a single object containing <code>fields: {...}</code> name-value pair.</p>
+<pre><code>  $(&#39;.ui.form.landlord&#39;).form({
+    fields: {
+      landlord : {
+        identifier : &#39;email_landlord&#39;,
+        rules : [{
+          type : &#39;empty&#39;,
+          prompt : &#39;Please select a landlord&#39;
+        },],
+      },
+      tenant : {
+        identifier : &#39;email_tenant&#39;,
+        rules : [{
+          type : &#39;empty&#39;,
+          prompt : &#39;Please select a tenant&#39;
+        },],
+      },
+    },
+  });</code></pre>
+<p>Where an Ajax call is required the form parameter is a single object comprises two name:value pairs:</p>
+<ul>
+<li>fields: { ...}</li>
+<li>onSuccess: {...}</li>
+</ul>
+<pre><code>  $(&#39;.ui.form.landlord&#39;).form({
+    fields: {
+      landlord : {
+        identifier : &#39;email_landlord&#39;,
+        rules : [{
+          type : &#39;empty&#39;,
+          prompt : &#39;Please select a landlord&#39;
+        },],
+      },
+      tenant : {
+        identifier : &#39;email_tenant&#39;,
+        rules : [{
+          type : &#39;empty&#39;,
+          prompt : &#39;Please select a tenant&#39;
+        },],
+      },
+    },
+
+    onSuccess : function(event, fields) {
+     makeTheCall();      
+     event.preventDefault();
+    },
+  });</code></pre>
+<pre><code>function makeTheCall()  {
+    var formData = $(&#39;.ui.form.landlord&#39;).serialize(); 
+    $.ajax({
+      type : &#39;POST&#39;,
+      url : &#39;/administrators/deletelandlord&#39;,
+      data : formData,
+      success : function(response) {
+        // do something
+      }
+    });
+}</code></pre>
 
   </div>
  
