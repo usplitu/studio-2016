@@ -1,0 +1,40 @@
+package theTests;
+import org.junit.*;
+
+import models.Residence;
+ 
+import java.util.*;
+import play.test.*;
+import theTests.*;
+
+public class ResidenceTest extends UnitTest {
+
+  private Residence residence;
+
+  
+  @Before
+  public void setup()
+  {
+    residence = new Residence();
+    residence.save();
+  }
+
+  @After
+  public void teardown()
+  {
+    residence.delete();
+
+  }
+
+  @Test
+  public void testCreate()
+  {
+    String eircode = residence.eircode;
+    Residence r1 = Residence.findByEircode(eircode);
+    // Positive test
+    assertEquals(r1.equals(residence), true);
+    // Negative test
+    assertNull(Residence.findByEircode("XXX YYY"));   
+  }
+
+}

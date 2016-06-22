@@ -1,0 +1,36 @@
+package theTests;
+
+import org.junit.*;
+import java.util.*;
+import play.test.*;
+import models.*;
+
+public class LandlordTest extends UnitTest
+{
+
+  private Landlord landlord;
+
+  @Before
+  public void setup()
+  {
+    landlord = new Landlord("homer", "simpson", "homer@simpson.com");
+    landlord.save();
+  }
+
+  @After
+  public void teardown()
+  {
+    landlord.delete();
+  }
+
+  @Test
+  public void testCreate()
+  {
+    Landlord owner = Landlord.findByEmail("homer@simpson.com");
+    // Positive test
+    assertEquals(landlord.equals(owner), true);
+    // Negative test
+    assertNull(Landlord.findByEmail("marge@simpson.com"));
+  }  
+
+}

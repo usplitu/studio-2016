@@ -1,0 +1,103 @@
+package theTests;
+
+import org.junit.*;
+
+import models.Landlord;
+import models.Residence;
+import models.Tenant;
+
+import java.util.*;
+import play.test.*;
+import theTests.*;
+import play.*;
+import play.jobs.*;
+import play.test.*;
+
+public class LandlordTenantResidence extends UnitTest
+{
+  
+  private Landlord landlord;
+  private Tenant tenant1;
+  private Residence residence1;  
+  
+  @Before
+  public void setup()
+  {
+ 
+    landlord = new Landlord("homer", "simpson", "homer@simpson.com"); 
+    landlord.save(); 
+    
+    residence1 = new Residence("XOOO, Y123"); 
+    landlord.residences.add(residence1);
+    residence1.landlord = landlord;
+    residence1.save();
+    landlord.save();
+    
+    tenant1 = new Tenant("barney", "gumble", "barney@gumble.com"); 
+    tenant1.residence = residence1;
+    tenant1.save();  
+   
+    residence1.tenant = tenant1;
+    residence1.save();
+  }
+
+  @After
+  public void teardown()
+  {
+    List<Residence> residences = Residence.findAll();
+    for (int i = 0; i < residences.size(); i += 1) 
+    {
+      Residence residence = residences.get(0);
+      
+      Tenant tenant = Tenant.findById(residence.id);
+      tenant.residence = null;
+      tenant.save();      
+      tenant.delete();
+      
+      landlord.residences.remove(residence);
+      landlord.save();
+      residence.tenant = null;
+      residence.delete(); // Design decision to bind residence and landlord
+      
+    }
+    landlord.delete();
+  }
+
+  @Test
+  public void testFindLandlord()
+  {
+   
+    Landlord homer = Landlord.findByEmail("homer@simpson.com");
+    Landlord marge = Landlord.findByEmail("marge@hotmail.com");
+    
+    // Positive test
+    assertEquals(homer.equals(landlord), true);
+    
+    // Negative test
+    assertNull(marge);
+    
+  }
+  
+  @Test
+  public void testFindTenant()
+  {
+    Tenant renter = Tenant.findByEmail("barney@gumble.com");
+    // Positive test
+    assertEquals(tenant1.equals(renter), true);
+    // Negative test
+    assertNull(Tenant.findByEmail("marge@simpson.com"));
+  }
+  
+  @Test
+  public void testFindResidence()
+  {
+    Residence residence = Residence.findByEircode("XOOO, Y123");
+    
+    // Positive test
+    assertEquals(residence.eircode.equals("XOOO, Y123"), true);
+    
+    // Negative test
+    Residence residence2 = Residence.findByEircode("AAA 432");
+    assertNull(residence2);
+  }
+}
