@@ -491,6 +491,78 @@ public class Residence extends Model
   public Landlord landlord;
   ...
 }</code></pre>
+<p>Here is the test code:</p>
+<pre><code>package theTests;
+
+import org.junit.*;
+
+import models.Landlord;
+import models.Residence;
+
+import java.util.*;
+import play.test.*;
+import theTests.*;
+import play.*;
+import play.jobs.*;
+import play.test.*;
+/**
+ * Create a landlord and a residence
+ * Establish entity relationship
+ *
+ */
+public class LandlordResidence extends UnitTest
+{
+
+  private Landlord landlord;
+  private Residence residence1;
+
+  @Before
+  public void setup()
+  {
+    landlord = new Landlord(&quot;homer&quot;, &quot;simpson&quot;, &quot;homer@simpson.com&quot;); 
+    landlord.save(); 
+    residence1 = new Residence(); 
+    landlord.residences.add(residence1);
+    residence1.landlord = landlord;
+    residence1.save();
+    landlord.save();
+  }
+
+  @After
+  public void teardown()
+  {
+    deleteLandlordResidences();
+
+  }
+
+  private void deleteLandlordResidences()
+  {
+    List&lt;Residence&gt; residences = Residence.findAll();
+    for (int i = 0; i &lt; residences.size(); i += 1) 
+    {
+      Residence residence = residences.get(0);
+      landlord.residences.remove(residence);
+      landlord.save();
+      residence.delete();
+    }
+    landlord.delete();
+  }
+
+  @Test
+  public void testEntities()
+  {
+
+    Landlord homer = Landlord.findByEmail(&quot;homer@simpson.com&quot;);
+    Landlord marge = Landlord.findByEmail(&quot;marge@hotmail.com&quot;);
+
+    // Positive test
+    assertEquals(homer.equals(landlord), true);
+    // Negative test
+    assertNull(marge);
+  }
+
+
+}</code></pre>
 <p>Run all tests and move to the next step only when all succeed.</p>
 
   </div>
