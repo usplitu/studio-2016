@@ -790,6 +790,12 @@ public class AllTests
 
 }</code></pre>
 <p>Test thoroughly following earlier procedures.</p>
+<p>Recall that you may comment out <code>@After</code> to retain the database content at the end of the test.</p>
+<p>The following figures indicate a successful outcome. Note how the relationship between the various models is represented. For example, the Residence table contains a column of Landlord IDs. Ignore the fact that the Eircodes are the same. This is so because we chose a default Residence constructor. It would have been better had we randomly generated the Eircodes.</p>
+<p>Similarly, ignore the fact that the Tenant passwords are <code>null</code>. This is an oversight and has no effect on the tests we conducted.</p>
+<p><img src="img/dbase/01.png" alt="Figure 1"></p>
+<p><img src="img/dbase/02.png" alt="Figure 2"></p>
+<p><img src="img/dbase/03.png" alt="Figure 3"></p>
 
   </div>
  
