@@ -100,8 +100,8 @@ h3
   </header>
   <div class="right tab-menu menu">
     
-      <a class="item" data-tab="Heroku">
-        Heroku
+      <a class="item" data-tab="Assignment Tips">
+        Assignment Tips
       </a>
     
       <a class="item" data-tab="01">
@@ -124,264 +124,436 @@ h3
         05
       </a>
     
+      <a class="item" data-tab="06">
+        06
+      </a>
+    
+      <a class="item" data-tab="07">
+        07
+      </a>
+    
+      <a class="item" data-tab="08">
+        08
+      </a>
+    
+      <a class="item" data-tab="09">
+        09
+      </a>
+    
     </div>
 </div>
 
 <br><br>
 
   
-  <div  class="ui tab segment lab" data-tab="Heroku">
+  <div  class="ui tab segment lab" data-tab="Assignment Tips">
     <h1>Objectives</h1>
-<p>Tutorial on deployment of a Play web application to the cloud (Heroku).</p>
+<p>This short lab provides some hints on how to implement the more difficult parts of the assignment. The topics discussed are Ajax, Global abatement (maps), validation and manipulation of Semantic controls (dropdown and edit box), dynamic updating of map markers, specifying alternative Play templates and, lastly, deployment of a non-master branch to Heroku.</p>
 
   </div>
  
   <div  class="ui tab segment lab" data-tab="01">
     <h1>Introduction</h1>
-<p>It is assumed you have already installed <em>git</em> on your computer.</p>
-<p>It is also assumed that you have installed <em>ssh</em> and generated a key pair.</p>
-<ul>
-<li>A separate lab and presentation set on the basic use of <em>git</em> and <em>ssh</em> keys is available elsewhere in the course material.</li>
-</ul>
-<p>An archive of project <em>donation-service</em> as used in this lab is available to download from here:</p>
-<ul>
-<li><a href="archives/org-wit-donation-service-id.zip">donation-service</a></li>
-</ul>
-<p>Alternatively, you may use a working Play app of your choosing.</p>
-<p>This guide on deploying a Play application to Heroku is based on Heroku documentation viewable <a href="https://devcenter.heroku.com/articles/git#creating-a-heroku-remote">here</a> [accessed on 2.7.2015].</p>
+<p>The existing labs and presentations contain all the material required to implement stories in levels basic and good. These include all stories in the range 1 to 10.</p>
+<p>Students attempting the levels excellent and outstanding will likely find it necessary to carry out some research in areas such as Ajax, making dynamic changes to Semantic controls (dropdowns and input controls) and Google maps.</p>
+<p>Some guidelines are supplied in this lab.</p>
 
   </div>
  
   <div  class="ui tab segment lab" data-tab="02">
-    <h1>Local Repository</h1>
-<p>Warning!</p>
-<p>Where your model includes the name User the following sample class illustrates how to avoid a name clash when deploying to Heroku (which uses Heroku PostGres database in which User is a reserved word):</p>
-<pre><code>import javax.persistence.Table;
+    <h1>Global abatement</h1>
+<p>The following code shows how to remove a Google map from the global scope (namespace) by creating a global variable, wrapping the map code in an immediately invokable function expression (IIFE) and exposing the necessary functionality in a returned anonymous JavaScript object that is assigned to the newly introduced global variable. This is demonstrated in the following code. </p>
+<pre><code>const CIRCLEMAP = (function (context) {
+  let map;
+  let circle;
+  const markers = [];
 
-/**
- * User has been escaped: This is necessary because User is a reserved word in PostGreSQL
- * However, if working in local host and wish to use localhost:9000/@db (for example) to view database
- * Then it is necessary to temporarily comment out the line (i.e. @Table(name = &quot;`User`&quot;) while testing with local host
- *
- */
-@Entity
-@Table(name=&quot;`User`&quot;)
-public class User extends Model
-{
-  ...
-  ...
+  context.onclick = function requestReportCircle() {
+    const center = circle.getCenter();
+    const latcenter = center.lat().toString();
+    const lngcenter = center.lng().toString();
+    const radius = circle.getRadius().toString();
+    $(&#39;#radius&#39;).val(radius);
+    $(&#39;#latcenter&#39;).val(latcenter);
+    $(&#39;#lngcenter&#39;).val(lngcenter);
+  };
 
-}</code></pre>
-<p>If you wish to use the local database and view its contents using the H2 Console (<a href="http://localhost:9000/@db">http://localhost:9000/@db</a>) it will be necessary to comment out <em>@Table(name=&quot;`User&#39;&quot;)</em>.</p>
-<p>Create a directory on your computer named, for example, <em>org-wit-donation-service</em>.</p>
-<p>In Git Bash terminal <em>cd</em> into this new directory.</p>
-<pre><code> cd org-wit-donation-service</code></pre>
-<p>Create a new empty repository:</p>
-<pre><code>git init</code></pre>
-<p>Using a file manager or otherwise, copy the contents of the <em>donation-service-id</em> project that you can download from <a href="archives/org-wit-donation-service-id.zip">here</a> to the <em>org-wit-donation-service</em> folder.
-<img src="img/heroku_014.png" alt=""></p>
-<p>Create and add a file named <strong>ProcFile</strong> to the root of <em>org-wit-donation-service</em>.</p>
-<ul>
-<li><p>Add the following single line to ProcFile:</p>
-<p>  <em>web: play run --http.port=$PORT $PLAY_OPTS</em></p>
-</li>
-</ul>
-<p>Ensure that the  <strong>.gitignore</strong> file is present in the root of <em>org-wit-donation-service</em>.</p>
-<p>To ensure a unique app name when deploying to Heroku, change the application name in <em>application.conf</em>, replacing <em>id</em> with your id number.</p>
-<p>Add all to the repo and commit:</p>
-<pre><code>git add .
-git commit -m &#39;first commit&#39;</code></pre>
-<p>Verify by running the command</p>
-<pre><code>git status</code></pre>
-<p>The response should as follow:
-<img src="img/heroku_016.png" alt=""></p>
+  //...
+  //...
+
+  function initialize() {
+    // ...
+  }
+
+  function updateMarkers(data) {
+    //...
+  }
+
+  // public api
+  return {
+    initialize,
+    updateMarkers,
+  };
+}(this));
+
+google.maps.event.addDomListener(window, &#39;load&#39;, CIRCLEMAP.initialize);</code></pre>
 
   </div>
  
   <div  class="ui tab segment lab" data-tab="03">
-    <h1>Heroku repository</h1>
-<p>Create an account on <a href="http://www.heroku.com">Heroku</a>.</p>
-<ul>
-<li>Note carefully your login and password.</li>
-</ul>
-<p>Download and install <a href="https://toolbelt.heroku.com">Heroku Toolbelt for Windows</a></p>
-<ul>
-<li>Close and reopen Git Bash following installation of Toolbelt.</li>
-<li><p>Verify installation ok by typing </p>
-<p>  <em>heroku --version</em> </p>
-</li>
-<li><p>The response should be something like:</p>
-<p>  <em>heroku/toolbelt/3.12.1 (i386-mingw32) ruby/1.9.3</em></p>
-</li>
-</ul>
-<p>Login in to your heroku account from Git Bash</p>
-<pre><code>heroku login</code></pre>
-<ul>
-<li>You will be prompted for you email and password.</li>
-<li>Successful authentication will be confirmed.</li>
-</ul>
-<p>Next create an app and repository on Heroku as follows:</p>
-<pre><code>heroku create</code></pre>
-<ul>
-<li>The response will be something like this:</li>
-</ul>
-<p><img src="img/heroku_003.png" alt="Figure 1: Heroku: app and repository created"></p>
-<p>Notice the default name assigned by Heroku to the remote app.</p>
-<p>Verify with the command </p>
-<pre><code>git remote -v</code></pre>
-<p>and observe a response similar to that in Figure 2.</p>
-<p><img src="img/heroku_004.png" alt="Figure 2: Checking remote repo on Heroku"></p>
-<p>Now add your SSH keys to Heroku (ensure no space between keys: and add).</p>
-<pre><code>heroku keys:add</code></pre>
-<p><img src="img/heroku_005.png" alt="Figure 3: Heroku: Adding SSH Keys"></p>
-<p>Finally, push the local repo to Heroku:</p>
-<pre><code>git push heroku master</code></pre>
-<p>The response should be somewhat similar to that shown in Figure 4.</p>
-<p><img src="img/heroku_006.png" alt="Figure 4: Successful deployment"></p>
-<p>We shall now test the service:</p>
-<ul>
-<li>In the specific case of this lab we have been randomly assigned a remote Heroku repo named <em>guarded-reef-267.git</em>. </li>
-<li>The convention for construction a URI to access this repo or service can easily be deduced by studying the URI for this specific service:</li>
-</ul>
-<pre><code>http://guarded-reef-2677.herokuapp.com/api/users</code></pre>
-<ul>
-<li>The portions <strong>/api/users</strong> is determined by how we, the developers, wrote the application (<em>donation-service</em>).</li>
-<li>Notice where the actual name of the repo is located in the URI:<ul>
-<li><em>guarded-reef-2677</em>.</li>
-</ul>
-</li>
-</ul>
-<p>Copy this URI into a brower&#39;s navigation bar: unfortunately an application error is flagged.</p>
-<ul>
-<li>The reason for this is that we have not set up a suitable database on Heroku. We shall attend to this shortly.</li>
-</ul>
-<p>A further example of a url is:</p>
-<pre><code>http://donation-v4.herokuapp.com/</code></pre>
-<p>In this case our application is <em>donation-v4</em>.</p>
-<p><strong>Changing name of Heroku app</strong></p>
-<p>We shall now change the Heroku-assigned name <em>guarded-reef-2677</em> to a more meaningful name <em>org-wit-donation-service-id</em> where <strong>id</strong> is your email address excluding @, periods, underscores and so on. For example john_doe@organs.com becomes johndoeorganscom. This is just a suggestion to ensure that the name you choose for the app on Heroku will be unique.</p>
-<p>Run the following command within the Heroku terminal:</p>
-<pre><code>heroku apps:rename org-wit-donation-service-id --app guarded-reef-2677</code></pre>
-<p>A typical response is shown in Figure 5:</p>
-<p><img src="img/heroku_007.png" alt="Figure 5: Changing name of Heroku app from command line"></p>
+    <h1>Semantic Validation</h1>
+<p>Here we show how to validate a Semantic UI (version 2) dropdown.</p>
+<pre><code>  $(&#39;.ui.dropdown&#39;).dropdown(&#39;clear&#39;); // &#39;clear&#39; restores placeholder value
+
+  $(&#39;.ui.form.donate&#39;).form({
+    fields : { 
+      amountDonated : { 
+        identifier : &#39;amountDonated&#39;,
+        rules : [{
+          type : &#39;empty&#39;,
+          prompt : &#39;Please select an amount to donate&#39;
+        },],
+      },
+    },
+
+  });</code></pre>
 
   </div>
  
   <div  class="ui tab segment lab" data-tab="04">
-    <h1>Heroku Database</h1>
-<p>You created a Heroku app in an earlier step (using the command <em>heroku create</em>) </p>
-<ul>
-<li>A database was made available as part of the app creation process.</li>
-<li>You can verify this by running the following command:</li>
-</ul>
-<pre><code>heroku pg:info</code></pre>
-<p>A typical response is depicted in Figure 1.</p>
-<p><img src="img/heroku_012.png" alt="Figure 1: Database information"></p>
-<p>In this case the DATABASE_URL is HEROKU_POSTGRESQL_MAUVE_URL.</p>
-<p>Log in to <a href="https://dashboard-next.heroku.com/apps/">Heroku</a> website for more detailed information such as is shown here in Figure 2 for the current project.</p>
-<p><img src="img/heroku_025.png" alt="Figure 2: App and associated database details on Heroku site"></p>
-<p>In order to make use of this database do the following:</p>
-<ul>
-<li>Modify the <em>application.conf</em> file:<ul>
-<li>Comment out any database activation statments such as, for example, <em>db = mem</em>.</li>
-<li>Add the following block to the end of the file.</li>
-</ul>
-</li>
-</ul>
-<pre><code>#================heroku databse config config=========================
-db=${DATABASE_URL}
-jpa.dialect=org.hibernate.dialect.PostgreSQLDialect
-jpa.ddl=update
-#================end database config heroku config====================</code></pre>
-<ul>
-<li>In the Heroku terminal add and commit the changes:</li>
-</ul>
-<pre><code>git add .
-git commit -m &#39;database configured&#39;
-git push heroku master</code></pre>
-<p>The response should be similar to that shown in Figure 3.
-<img src="img/heroku_010.png" alt="Figure 3: Application + configured database pushed to remote heroku repo"></p>
-<p><strong>Test App</strong></p>
-<p>You can test that the application is working correctly in a number of ways, listed here:</p>
-<ul>
-<li>Run the following command: output similar to that in Figure 4 indicates your app has been successfully deployed.</li>
-</ul>
-<pre><code>heroku ps</code></pre>
-<p><img src="img/heroku_023.png" alt="Figure 4: Successful deployment"></p>
-<ul>
-<li>Next run the command to open a browser: Figure 5 shows the command and additionally the response to the command and the output in the browser if the app is running correctly.</li>
-</ul>
-<pre><code>heroku open</code></pre>
-<p><img src="img/heroku_024.png" alt="Figure 5: Application ready"></p>
-<ul>
-<li>Finally, introduce this URI in a browser&#39;s navigation bar: the expected response is shown here in Figure 6:</li>
-</ul>
-<pre><code>http://org-wit-donation-service-id.herokuapp.com/api/users</code></pre>
-<p><img src="img/heroku_011.png" alt="Figure 6: List of users returned in resonse to query"></p>
-<p><strong>Reset Database</strong></p>
-<p>You can reset the database as follows:</p>
-<ul>
-<li>First obtain the DATABASE_URL with the following command:</li>
-</ul>
-<pre><code>heroku pg:info</code></pre>
-<p>A typical response is depicted in Figure 7.</p>
-<p><img src="img/heroku_012.png" alt="Figure 7: Database information"></p>
-<p>In this case the DATABASE_URL is HEROKU_POSTGRESQL_MAUVE_URL. The command to run to reset is:</p>
-<pre><code>heroku pg:reset HEROKU_POSTGRESQL_MAUVE_URL</code></pre>
-<p>More simply you may use the command:</p>
-<pre><code>heroku pg:reset DATABASE_URL</code></pre>
-<p>Follow the instructions as indicated in Figure 8.</p>
-<p><img src="img/heroku_013.png" alt="Figure 8: Resetting the database"></p>
-<p>If you make changes to a model class then it will be necessary to reset the database.</p>
-<ul>
-<li>Always following a database reset it&#39;s advisable (even necessary) to execute a fresh push (touching a file if necessary).</li>
-</ul>
-<p><strong>References</strong></p>
-<p><a href="https://devcenter.heroku.com/articles/git">Deploying with Git</a></p>
+    <h1>Ajax</h1>
+<p>Following on from the previous step, on successful validation, an Ajax call may follow:</p>
+<pre><code>$(&#39;.ui.dropdown&#39;).dropdown(&#39;clear&#39;); // This restores the placeholder
+
+$(&#39;.ui.form.donate&#39;).form({
+  fields: {
+    amountDonated: {
+      identifier: &#39;amountDonated&#39;,
+      rules: [{
+        type: &#39;empty&#39;,
+        prompt: &#39;Please select an amount to donate&#39;,
+      }]
+    },
+  },
+
+  onSuccess: function (event, fields) {
+    submitForm();
+    event.preventDefault();
+  },
+});
+
+function submitForm() {
+  var formData = $(&#39;.ui.form.donate&#39;).serialize();
+  console.log(&#39;formData: &#39;, formData);
+  $.ajax({
+    type: &#39;POST&#39;,
+    url: &#39;/donation/donate&#39;,
+    data: formData,
+    success: function (response) {
+      console.log(&#39;donate server response :&#39; + response);
+    },
+  });
+}</code></pre>
+<p>Here is the associated html and controller code:</p>
+<pre><code class="lang-html">&lt;form class=&quot;ui form donate&quot;&gt;
+
+  &lt;div class=&quot;ui selection dropdown&quot; id=&quot;landlord&quot;&gt;
+    &lt;input name=&quot;amountDonated&quot; type=&quot;hidden&quot;&gt;
+    &lt;div class=&quot;default text&quot;&gt;Amount&lt;/div&gt;
+    &lt;i class=&quot;dropdown icon&quot;&gt;&lt;/i&gt;
+    &lt;div class=&quot;menu&quot;&gt;
+      &lt;div class=&quot;item&quot; data-value=&quot;100&quot;&gt;$100&lt;/div&gt;
+      &lt;div class=&quot;item&quot; data-value=&quot;500&quot;&gt;$500&lt;/div&gt;
+      &lt;div class=&quot;item&quot; data-value=&quot;1000&quot;&gt;$1000&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;ui blue submit button&quot;&gt;Donate &lt;i class=&quot;add icon&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;div class=&quot;ui error message&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;
+
+&lt;script src=&quot;@{&#39;/public/javascripts/dropdown.js&#39;}&quot;&gt;&lt;/script&gt;</code></pre>
+<pre><code class="lang-java">package controllers;
+
+import play.*;
+import play.mvc.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import models.*;
+
+public class Application extends Controller
+{
+  static Gson gson = new GsonBuilder().create();
+
+  public static void index()
+  {
+    render();
+  }
+
+  public static void donate(long amountDonated)
+  {   
+    renderJSON(gson.toJson(amountDonated));
+  }
+
+}</code></pre>
 
   </div>
  
   <div  class="ui tab segment lab" data-tab="05">
-    <h1>Regenerate project (Optional)</h1>
-<p>You can regenerate your work environment as follows:</p>
+    <h1>Semantic dropdown</h1>
+<p>Here is sample code showing how to dynamically remove an entry from a dropdown.</p>
+<p>An Ajax call retrieves a hardcoded name from the server.</p>
+<p>If this name is present in the dropdown content then that item is deleted from the dropdown.</p>
+<p>To exercise:</p>
 <ul>
-<li>Create a working folder, for example <em>workspacePlay</em></li>
-<li>Change directory into this folder<pre><code>cd workspacePlay</code></pre>
-</li>
-<li>If not already logged in to Heroku, do so now:</li>
+<li>Chose <em>any</em> name in the dropdown,</li>
+<li>Press Donate button,</li>
+<li>This should have the effect of deleting Homer from the dropdown.</li>
+<li>Check the console to verify the response.</li>
 </ul>
-<pre><code>heroku login</code></pre>
-<p>Obtain a clone of the remote repo:</p>
-<pre><code> git clone git@heroku.com:org-wit-donation-service-id.git</code></pre>
-<p><img src="img/heroku_017.png" alt="Figure 1: Cloning heroku repository"></p>
-<p>The project will now be recreated in a folder <em>org-wit-donation-service-id</em>.</p>
-<ul>
-<li>Change directory to <em>org-wit-donation-service-id</em>.</li>
-<li>Run the command to allow the project to be imported into an Eclipse workspace:<pre><code>play eclipsify</code></pre>
-Launch Eclipse, switch to the workspace <em>workspacePlay</em> and import the project:</li>
-</ul>
-<p><img src="img/heroku_018.png" alt="Figure 2: Importing project into Eclipse workspace"></p>
-<p>Note that earlier we pushed to Heroku with the following command:</p>
-<pre><code>git push heroku master</code></pre>
-<p>This will not now work. To understand why check the remote:</p>
-<pre><code>git remote -v</code></pre>
-<p><img src="img/heroku_019.png" alt=""></p>
-<p>Notice that it is <strong>origin</strong>, not <strong>heroku</strong>. </p>
-<p>Working with origin will work ok.</p>
-<p>But perhaps it is better to preserve Heroku convention which requires that we:</p>
-<ul>
-<li>Remove <em>origin</em> as the remote</li>
-<li>Replace with <em>heroku</em></li>
-</ul>
-<p>This can easily be achieved with the following commands:</p>
-<pre><code>git remote remove origin
-git remote add heroku git@heroku.com:org-wit-donation-service-id.git</code></pre>
-<p>Then, push with the following command:</p>
-<pre><code>git push heroku master</code></pre>
-<p>It is possible to push a local branch other than master to heroku with the following command:</p>
-<pre><code>git push heroku other:master</code></pre>
-<p>For example, if the local branch is <em>donation-v4</em> then the command becomes:</p>
-<pre><code>git push heroku donation-v4:master</code></pre>
+<pre><code class="lang-javascript">/**
+ * Semantic ui 2 validation applied.
+ * Ajax call receives donor named Homer.
+ * This name checked against dropdown content.
+ * If match found, Homer removed from dropdown.
+ * Placeholder restored in dropdown (Donor).
+ */
+  $(&#39;.ui.dropdown&#39;).dropdown(&#39;clear&#39;);
+
+  $(&#39;.ui.form.donate&#39;).form({
+    fields : {
+      name : {
+        identifier : &#39;name&#39;,
+        rules : [{
+          type : &#39;empty&#39;,
+          prompt : &#39;Please select a dropdown entry&#39;
+        },],
+      },
+    },
+    onSuccess : function(event, fields) {
+      submitForm();      
+      event.preventDefault();
+     },
+   });
+
+  function submitForm() {
+    var formData = $(&#39;.ui.form.donate&#39;).serialize(); // Here this includes donor selected in dropdown
+
+    console.log(&#39;formData: &#39;, formData);
+
+    $.ajax({
+      type : &#39;POST&#39;,
+      url : &#39;/donation/donate&#39;, // see the routes file and Application.donate.
+      data : formData,
+      success : function(response) { // See Application.donate: response hardwired &#39;Homer&#39;
+        console.log(&#39;donate server response :&#39; + response);
+        dropdownDonorClear(response);
+      }
+    });
+  }
+
+  function dropdownDonorClear(name) {
+    let $obj = $(&#39;.item.name&#39;);
+    for (let i = 0; i &lt; $obj.length; i += 1) { // Iterate the list of dropdown names.
+      if($obj[i].getAttribute(&#39;data-value&#39;).localeCompare(name) == 0) { // If match found,
+        $obj[i].remove(); // Remove the argument Donor from dropdown (hardwired in Application.donate).
+        $(&#39;.ui.dropdown.names&#39;).dropdown(&#39;clear&#39;); // Restore the dropdown placeholder (Donor).
+        break;
+      }
+    }
+  }</code></pre>
+<p>The html and java code follows here:</p>
+<pre><code class="lang-html">#{extends &#39;main.html&#39; /}
+#{set title:&#39;Home&#39; /}
+
+&lt;form class=&quot;ui form donate&quot;&gt;
+
+  &lt;div class=&quot;ui selection dropdown names&quot;&gt;
+    &lt;input name=&quot;name&quot; type=&quot;hidden&quot;&gt;
+    &lt;div class=&quot;default text&quot;&gt;Donor&lt;/div&gt;
+    &lt;i class=&quot;dropdown icon&quot;&gt;&lt;/i&gt;
+    &lt;div class=&quot;menu donor&quot;&gt;
+      #{list items: names, as: &#39;name&#39;}
+        &lt;div class=&quot;item name&quot; data-value=&quot;${name}&quot;&gt;${name}&lt;/div&gt;
+      #{/list}
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;ui blue submit button&quot;&gt;Donate &lt;i class=&quot;add icon&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;div class=&quot;ui error message&quot;&gt;&lt;/div&gt;
+&lt;/form&gt;
+
+&lt;script src=&quot;@{&#39;/public/javascripts/dropdown.js&#39;}&quot;&gt;&lt;/script&gt;</code></pre>
+<pre><code class="lang-java">package controllers;
+
+import play.*;
+import play.mvc.*;
+import java.util.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import models.*;
+
+public class Application extends Controller
+{
+  static Gson gson = new GsonBuilder().create();
+
+  public static void index()
+  {
+    List&lt;String&gt; names = new ArrayList&lt;String&gt;(Arrays.asList(&quot;Homer&quot;, &quot;Marge&quot;, &quot;Bart&quot;));
+    render(names);
+  }
+
+  public static void donate(String name)
+  {
+    String response = gson.toJson(&quot;Homer&quot;);
+    renderJSON(response);
+  }
+
+}</code></pre>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Differentiate Semantic controls</h1>
+<p>Here we present code snippets showing how to differentiate between two dropdowns on same page.</p>
+<p>You could introduce the form <a href="http://www.w3schools.com/tags/tag_form.asp"><code>name</code></a> attribute as a means of distinguishing between the two dropdowns. The html &amp; script code might then be something like this:</p>
+<pre><code>&lt;form class=&quot;ui form&quot; name=&quot;landlordform&quot;&gt;
+  ...
+&lt;/form&gt;</code></pre>
+<pre><code>$(&#39;.ui.form[name=&quot;landlordform&quot;]&#39;).form({
+  // ...
+});</code></pre>
+<p>However, it&#39;s much simpler to use a class selector:</p>
+<pre><code>&lt;form class=&quot;ui form landlord&quot;&gt;
+  //...
+&lt;/form&gt;</code></pre>
+<pre><code>&lt;form class=&quot;ui form tenant&quot;&gt;
+  //...
+&lt;/form&gt;</code></pre>
+<pre><code>$(&#39;.ui.form.landlord&#39;).form({
+// ...
+});</code></pre>
+<p>Here are more detailed examples.</p>
+<p>A landlord dropdown:</p>
+<pre><code>
+      &lt;form class=&quot;ui form segment landlord&quot;&gt;
+        &lt;div id=&quot;deletelandlord&quot; class=&quot;ui fluid selection dropdown landlord&quot;&gt;
+          &lt;input name=&quot;email_landlord&quot; type=&quot;hidden&quot; id=&quot;form_delete_landlord&quot;&gt;
+          &lt;div class=&quot;default text&quot;&gt;Select landlord to delete&lt;/div&gt;
+          &lt;i class=&quot;dropdown icon&quot;&gt;&lt;/i&gt;
+          &lt;div class=&quot;menu landlord&quot;&gt;
+            #{list items: emailLandlords, as: &#39;emailLandlord&#39;}
+            &lt;div class=&quot;item landlord&quot; data-value=&quot;${emailLandlord}&quot;&gt;${emailLandlord}&lt;/div&gt;
+            #{/list}
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- Possibly other material within form --&gt;
+       &lt;/form&gt;</code></pre>
+<p>A tenant dropdown on same page:</p>
+<pre><code>
+      &lt;form class=&quot;ui form segment tenant&quot;&gt;
+        &lt;div id=&quot;deletetenant&quot; class=&quot;ui fluid selection dropdown&quot;&gt;
+          &lt;input name=&quot;email_tenant&quot; type=&quot;hidden&quot; id=&quot;form_delete_tenant&quot;&gt;
+          &lt;div class=&quot;default text&quot;&gt;Select tenant to delete&lt;/div&gt;
+          &lt;i class=&quot;dropdown icon&quot;&gt;&lt;/i&gt;
+          &lt;div class=&quot;menu&quot;&gt;
+            #{list items:emailTenants, as: &#39;emailTenant&#39;}
+            &lt;div class=&quot;item tenant&quot; data-value=&quot;${emailTenant}&quot;&gt;${emailTenant}&lt;/div&gt;
+            #{/list}
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- Possibly other material within form --&gt;
+       &lt;/form&gt;</code></pre>
+<pre><code>  $(&#39;#deletelandlord&#39;).dropdown();</code></pre>
+<p>  As before, a class selector could be used instead of an id:</p>
+<pre><code>  $(&#39;.ui.dropdown.landlord&#39;).dropdown();</code></pre>
+<pre><code>  /**
+   * Validate delete landlord dropdown
+   * Invoke controller action and retrieve data using jQuery ajax
+   */
+
+  $(&#39;.ui.form.landlord&#39;).form({
+    //...
+  });</code></pre>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Map markers</h1>
+<p>Here is a code snippet applying to a situation where the landlord selected in the dropdown list is deleted and the associated map markers are updated to reflect this change.</p>
+<pre><code>function updateLandlord() {
+  var formData = $(&#39;.ui.form.landlord&#39;).serialize();
+  $.ajax({
+    type: &#39;POST&#39;,
+    url: &#39;/administrators/deletelandlord&#39;,
+    data: formData,
+    success: function (response) { // Response contains array marker data
+      console.log(&#39;delete landlord response : &#39; + response);
+      $(&#39;#notificationLandlord&#39;).html(&#39;Landlord deleted : &#39; + $(&#39;#form_delete_landlord&#39;).val());
+
+      // response format: eircode, lat, lng, marker message
+      ADMIN_MAP.updateMarkers(response);
+
+      let email = $(&#39;#deletelandlord&#39;).dropdown(&#39;get text&#39;);
+      removeItemLandlordDropdown(email);
+    },
+  });
+}
+
+function removeItemLandlordDropdown(email) {
+  // ...
+}</code></pre>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="08">
+    <h1>Play controllers</h1>
+<p>Play Framwork documentation on contollers is availabe <a href="https://www.playframework.com/documentation/1.4.x/controllers">here</a>.</p>
+<p>We are interested in how a template is executed. By this we mean, how does the controller respond to a http request in determining which template or html page is rendered and what data is provided to the page by the controller?</p>
+<p>Consider this code snippet taken from the Play documentation:</p>
+<pre><code>public class Clients extends Controller {
+
+    public static void index() {
+        render();    
+    }
+}</code></pre>
+<p>This results in a template named <code>index.html</code> being rendered. The template is located in <code>app/views/Clients</code> folder.</p>
+<p>This is the default situation.</p>
+<p><img src="img/01.png" alt="Figure 1: Default template"></p>
+<p>Recall that the method <code>public static void index()</code> is referred to as an <strong>Action</strong>.</p>
+<p>Now consider a situation where several requests issue from a html page.  This applies, for example, to story 14.</p>
+<p><img src="img/02.png" alt="Figure 2: Story 14"></p>
+<p>This story implementation results in 4 submit buttons on the html page, one for each of the requested reports. The same controller is used in all cases. Therefore the default situation, described above, is no longer adequate. A single action, <code>index</code>, would be insufficient since we require to respond with a different data set for each different request (button press). </p>
+<p><img src="img/03.png" alt="Figure 3: Reports page"></p>
+<p>We can implement additional actions by using the Play <code>renderTemplate(...)</code> method. </p>
+<p><img src="img/04.png" alt="Figure 4: Multiple actions may invoke same template while responding with different data"></p>
+<p>The default action might be used to respond with one particular data set, for example as shown here:</p>
+<pre><code>  public static void index()
+  {
+    ...
+    render(residences);
+  }</code></pre>
+<p>Other actions could then be developed to respond with differ data:</p>
+<pre><code>  public static void byRented(String rentedStatus)
+  {
+    // Create list of residences whose rented status match argument.
+    ...
+
+    renderTemplate(&quot;Reports/index.html&quot;, residences);
+  }</code></pre>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="09">
+    <h1>Heroku</h1>
+<p>When you have completed development on the master branch, create a branch dedicated to the version you will deploy to <code>Heroku</code> as follows:</p>
+<pre><code>git checkout -b heroku</code></pre>
+<p>This command will create and checkout a local branch named <code>heroku</code>. It is not mandatory that the branch name be <code>heroku</code> - it just seems a logical, self-documenting choice.</p>
+<p>Follow the steps in the <code>Heroku</code> lab to create an account and so on.</p>
+<p>Still checked out on the <code>heroku</code> branch, execute this command to deploy:</p>
+<pre><code>git push heroku heroku:master</code></pre>
+<p>This last command differs from that you would use were you to push your master branch, namely: <em>git push heroku master</em>.</p>
 
   </div>
  
