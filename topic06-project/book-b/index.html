@@ -140,6 +140,10 @@ h3
         09
       </a>
     
+      <a class="item" data-tab="10">
+        10
+      </a>
+    
     </div>
 </div>
 
@@ -546,6 +550,63 @@ function removeItemLandlordDropdown(email) {
   </div>
  
   <div  class="ui tab segment lab" data-tab="09">
+    <h1>Git branching</h1>
+<p>Key points: </p>
+<ul>
+<li><p>If you have a branch (named, for example, <code>dev</code>) and wish to push this to your remote repo, then you should do so explicitly. A push executed while master is checked out will not result in <code>dev</code> also being pushed. </p>
+</li>
+<li><p>If, on resuming, you wish to continue developing on <code>dev</code>, then check it out and update with a pull request before commencing work.</p>
+</li>
+</ul>
+<p>Consider this local situation:</p>
+<ul>
+<li>You have a branch named <code>dev</code>.</li>
+<li>You are working on the master branch and make a commit and push in the normal manner:</li>
+</ul>
+<pre><code>git add .
+git commit -m &#39;story xx ....&#39;
+git push # or git push origin master</code></pre>
+<p>This will not result in the branch <code>dev</code> being pushed. To do so switch to <code>dev</code> branch and execute a push:</p>
+<pre><code>git checkout dev
+git push</code></pre>
+<p>Attempting this for the first time will result in the following response:</p>
+<pre><code>git push
+fatal: The current branch dev has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin dev</code></pre>
+<p>Run this command as shown below followed by an extract from a typical output:</p>
+<pre><code>git push --set-upstream origin dev
+
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 291 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: 
+remote: Create pull request for dev:
+remote:   https://bitbucket.org/...
+remote: 
+To git@bitbucket.org:....git
+ * [new branch]      dev -&gt; dev
+Branch dev set up to track remote branch dev from origin.</code></pre>
+<p>You may delete the remote branch as shown in this example:</p>
+<pre><code>git push origin --delete dev
+To git@bitbucket.org:.....git
+ - [deleted]         dev</code></pre>
+<p>A local branch, dev, may be delete thus:</p>
+<pre><code>git checkout master # Cannot delete branch currently checked out.
+git branch -d dev</code></pre>
+<p>To pull the remote branch?</p>
+<pre><code>git pull origin dev</code></pre>
+<p>The response is something along the following lines if local <code>dev</code> is already up-to-date:</p>
+<pre><code>From bitbucket.org:....
+ * branch            dev        -&gt; FETCH_HEAD
+Already up-to-date.</code></pre>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="10">
     <h1>Heroku</h1>
 <p>When you have completed development on the master branch, create a branch dedicated to the version you will deploy to <code>Heroku</code> as follows:</p>
 <pre><code>git checkout -b heroku</code></pre>
