@@ -108,6 +108,10 @@ h3
         Resources
       </a>
     
+      <a class="item" data-tab="Q&A">
+        Q&A
+      </a>
+    
     </div>
 </div>
 
@@ -140,6 +144,115 @@ h3
 <li><a href="https://myrent-studio-2016.herokuapp.com/"><a href="https://myrent-studio-2016.herokuapp.com/">https://myrent-studio-2016.herokuapp.com/</a></a></li>
 </ul>
 <p>The hard deadline for completed submissions is 11pm, August 20th. Materials submitted later will not be graded.</p>
+
+  </div>
+ 
+  <div  class="ui tab segment lab" data-tab="Q&A">
+    <h1>Presentation and question &amp; answer session</h1>
+<h2>Introduction</h2>
+<p>As discussed during the studio sesssion, the final act in the grading process will comprise a presentation by you of your completed application and a question and answer session related to the application, JavaScript and the Git versioning system.</p>
+<p>The questions will be based on the following list.</p>
+<p>As indicated in the schedule already published, the total time allotted for each student is 20 minutes, 10 minutes for presentation and the remaining 10 for Q&amp;A.</p>
+<h2>Play Framework</h2>
+<ol>
+<li>What is a framework? </li>
+<li>What is the Play Framework?</li>
+<li>You have been developing using version 1.x. There is a later version 2.x. What are some fundamental differences? Would your version work without refactoring were you to upgrade to Play 2?</li>
+<li>Play uses the Model View Controller (MVC) pattern. Briefly explain the pattern. Why is it used? Is it unique to Play?</li>
+<li>Each Play application contains a <strong>routes</strong> file. What is its purpose?</li>
+<li>Here is a typical extract from a routes file. Explain.<pre><code># Donation page
+GET    /donation                                DonationController.index
+POST   /donation/donate                         DonationController.donate</code></pre>
+</li>
+<li>What is the purpose of the <strong>application.conf</strong> file?</li>
+<li>The following Play command is frequently used. What is the purpose of doing so?<pre><code>play eclipsify</code></pre>
+</li>
+<li>Play uses a templating engine. Explain. Discuss where templating has been used in your project application, for example.</li>
+<li>What is the role of the controller?</li>
+<li>What is the role of the view?</li>
+<li>What is the role of the model?</li>
+<li>Explain @Entity and the parent class Model as used in this code snippet:<pre><code>@Entity
+public class Donation extends Model 
+{
+...
+}</code></pre>
+</li>
+<li>Explain the following terms:<pre><code>@ManyToOne
+@OneToMany
+@OneToOne</code></pre>
+</li>
+</ol>
+<h2>JavaScript Language (JS)</h2>
+<ol>
+<li>Who developed the JavaScript language and when was it developed?</li>
+<li>What have Java and JavaScript in common (other than the word Java)?</li>
+<li>What is ECMAScript? How does it compare to JavaScript?</li>
+<li>What role does JavaScript play in developing client-side code?</li>
+<li>What is ES6? What preceded it? Name some new features introduced in ES6.</li>
+<li>JS now has 6 primitive types. What is a primitive type? List some of the six.</li>
+<li>JS is a loosely typed language. Explain.</li>
+<li>Discuss any behavioural differences between the types <em>var</em>, <em>const</em> and <em>let</em>.</li>
+<li>Java has several number types, for example, <em>int</em>, <em>long</em>, <em>float</em> and so on. How many number types does JS have? </li>
+<li>Discuss the strengths and weaknessess of the JS number types.</li>
+<li>What is the difference between <em>null</em> and <em>undefined</em>?</li>
+<li>ES6 introdued the <em>Symbol</em> type. What is it and what is its purpose?</li>
+<li>What is a JS object?</li>
+<li>What is an object literal?</li>
+<li>How do JS objects and arrays differ? When would one use an object, when an array?</li>
+<li>Discuss the use of semi-colons in JS.</li>
+<li>Discuss the differences, if any, between the uses of the equality operators in the following code:<pre><code>String s1 = &#39;Hello world&#39;;
+String s2 = &#39;Hello world&#39;;
+let b1 = s1 == s2;
+let b2 = s1 === s2;</code></pre>
+</li>
+<li>Explain the terms <em>truthy</em> and <em>falsy</em>.</li>
+<li>Explain how the use of the &amp;&amp; &amp; || operators differ in JS compared to in Java.</li>
+<li>How is control flow achieved in JS?</li>
+<li>Where may one place JS code in a web app? Discuss the implications of where such code is located?</li>
+<li>How might one simultaneously debug both client JS and Play server Java code?</li>
+<li>Explain the terms <em>function</em> and <em>method</em>.</li>
+<li>What is an anonymous JS function?</li>
+<li>Discuss some of the implications in using <em>strict</em> mode.</li>
+<li>What is the <em>arrow</em> function? How does the behaviour of the <em>this</em> object or reference change when using an <em>arrow</em> function?</li>
+<li>A JS function is sometimes referred to as a <em>first class object</em>. Explain. In what way, if any, does it differ from a regular JS object?</li>
+<li>jQuery: what is it? Why use it?</li>
+<li>Explain: <ul>
+<li><strong>The jQuery function</strong>, </li>
+<li>A jQuery function, </li>
+<li>A jQuery method, </li>
+<li>A jQuery object.</li>
+</ul>
+</li>
+<li>In the context of a JS file, what do the terms minification and obfuscation mean and why might these processes be used?</li>
+<li>What are the options available and steps involved to introduce jQuery into an application? </li>
+<li>JS is referred to as a prototypal language. Explain. Compare to Java.</li>
+<li>What does the term <strong>scope</strong> mean? How do scopes differ in the JS and Java languages?</li>
+<li>Explain and discuss in the context of JS the terms <strong>global</strong> scope, <strong>function</strong> scope and <strong>block</strong> scope.</li>
+<li>What is an immediately invoked function expression (IIFE)? When might one use an IIFE?</li>
+<li>Describe some techiques to avoid polluting the global scope (namespace)?</li>
+<li>Explain Temporal Dead Zone (TDZ).</li>
+<li>Explain what is meant by a closure. Describe an example where use of a closure would be advantageous.</li>
+<li>Explain what is meant by Ajax (Asynchronous Java + XML). Why might one use it?</li>
+</ol>
+<h2>Git Versioning System</h2>
+<ol>
+<li>Git is a distributed versioning system. How does this compare to centralized version control systems?</li>
+<li>Describe in broad terms how to put an existing application under Git version control.</li>
+<li>Distinguish between client-side and server-side Git, providing examples.</li>
+<li>Would you put all files in a project under Git control? If not, why not? How would decide which files to exclude and how would you achieve this?</li>
+<li>What do you hope will happen when you run this command?<pre><code>git push origin master</code></pre>
+</li>
+<li>What do you hope will happen when you run this command?<pre><code>git pull origin master</code></pre>
+</li>
+<li>What is the index?</li>
+<li>What does the <em>commit</em> command achieve?</li>
+<li>What are the consequences for you working folder and its contents when, while on tht master branch, you run a command such as the following. What might <em>dev</em> refer to?<pre><code>git checkout dev</code></pre>
+</li>
+<li>How many object types in Git, list them and briefly explain?</li>
+<li>What is SHA-1, a SHA-1 hash and what role do they play in Git? </li>
+<li>The merge and rebase commands may be used, for example, to move a development branch to the master branch. Which command should one use and why?</li>
+<li>How might one revise the commit history of a project, for example in reducing the number of commit messages or changing the message content of a message or messages? What is good practice in doing so?</li>
+</ol>
 
   </div>
  

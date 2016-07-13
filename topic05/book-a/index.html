@@ -155,8 +155,21 @@ h3
 
   
   <div  class="ui tab segment lab" data-tab="Advanced-Git-I">
-    <h1>A second lab on the use of Git.</h1>
-<p>The lab describes how a two-person team might collaborate to use Git to manage a project. Individually owned and shared material is used to demonstrate where conflicts may be expected and how to resolve them when they arise.</p>
+    <h1>gitignore</h1>
+<p>Scenario: you have forgotten somehow to exclude a file or folder from your .git repo, have already added the material to the index, committed and pushed to your remote repo. Now you wish to rectify the situation. Here is how to do so:</p>
+<ul>
+<li>Assume the folder you wish to exclude is <code>tmp</code>. Add it to the .gitignore file and save.</li>
+</ul>
+<pre><code>// File: .gitignore
+
+...
+...
+tmp</code></pre>
+<p>Run these commands:</p>
+<pre><code>git rm -r --cache tmp
+git add .
+git commit -m &#39;excluding tmp &amp; cleaning local cache&#39; # or some such message
+git push</code></pre>
 
   </div>
  
@@ -598,38 +611,74 @@ git checkout branch-det-head</code></pre>
   </div>
  
   <div  class="ui tab segment lab" data-tab="09">
-    <h1>gitignore</h1>
-<p>Scenario: you have forgotten somehow to exclude a file or folder from your .git repo, have already added the material to the index, committed and pushed to your remote repo. Now you wish to rectify the situation. Here is how to do so:</p>
+    <h1>Detached Head</h1>
+<p><img src="img/git-logo.jpg" alt=""> </p>
+<p><strong>Page contents</strong></p>
 <ul>
-<li>Assume the folder you wish to exclude is <code>tmp</code>. Add it to the .gitignore file and save.</li>
+<li>Create a detached head.</li>
+<li>Resolve.</li>
 </ul>
-<pre><code>// File: .gitignore
-
-...
-...
-tmp</code></pre>
-<p>Run these commands:</p>
-<pre><code>git rm -r --cache tmp
-git commit -m &#39;excluding tmp &amp; cleaning local cache&#39; # or some such message
-git push</code></pre>
-<p><img src="img/cache/01.png" alt="Figure 1: Folder contents">
-<img src="img/cache/02.png" alt="Figure 2: First commit - no gitignore">
-<img src="img/cache/03.png" alt="Figure 3: Status check">
-<img src="img/cache/04.png" alt="Figure 4: Push to remote repo">
-<img src="img/cache/05.png" alt="Figure 5: Pull in separate device or folder">
-<img src="img/cache/14.png" alt="Figure 6: Unwanted tmp folder pulled">
-<img src="img/cache/07.png" alt="">
-<img src="img/cache/08.png" alt="Figure 7: Add tmp to gitignore">
-<img src="img/cache/09.png" alt="Figure 8: Run git rm -r --cache tmp to remove tmp from index">
-<img src="img/cache/10.png" alt="Figure 9: Status check verifies index change">
-<img src="img/cache/11.png" alt="Figure 10: Commit changes">
-<img src="img/cache/12.png" alt="Figure 11: Status check confirm local repo ahead by 1 commit as expected">
-<img src="img/cache/13.png" alt="Figure 12: Push to remote">
-<img src="img/cache/14.png" alt="Figure 13: Switch to remote device &amp; verify tmp no longer being tracked">
-<img src="img/cache/15.png" alt="">
-<img src="img/cache/16.png" alt="">
-<img src="img/cache/17.png" alt="">
-<img src="img/cache/18.png" alt="Figure 14: Unwanted tmp folder no longer tracked"></p>
+<h2>Student A &amp; Student B</h2>
+<p><strong>Action</strong></p>
+<ul>
+<li>This step does not require use of the remote repository.</li>
+<li>Delete the local repository <em>gitlab</em>, recreate and add and commit a file name <em>Circle.java</em></li>
+<li>Then make three commits of the test source file Circle.java, changing the file between commits. </li>
+<li>Check the log as before: you should see something like Figure 1.</li>
+</ul>
+<pre><code>rm -rf gitlab
+mkdir gitlab
+cd gitlab
+git init
+echo Circle.java &gt; Circle.java
+git add .
+git commit -m &#39;1st commit&#39;
+echo Circle.java 2nd commit &gt; Circle.java
+git add .
+git commit -m &#39;2nd commit&#39;
+echo Circle.java 3rd commit &gt; Circle.java
+git add .
+git commit -m &#39;3rd commit&#39;</code></pre>
+<p><img src="img/36.png" alt="Figure 1"></p>
+<p>Checkout the second commit.</p>
+<pre><code>git checkout 8cdbece</code></pre>
+<p>See Figure 2 for the response to this checkout request.</p>
+<p><img src="img/37.png" alt="Figure 2"></p>
+<p>Our working tree is now in the infamous <strong>detached head</strong> state which is not a good place to be.</p>
+<h1>Scenario 1</h1>
+<p>We can take immediate action to resolve this be simply checking out the master:</p>
+<pre><code>git checkout master</code></pre>
+<p><img src="img/38.png" alt="Figure 3"></p>
+<p>But we&#39;re not quite done yet as there are many ways to really screw up, some - but not all - of which we&#39;ll deal with.</p>
+<h1>Scenario 2</h1>
+<p>Let&#39;s complicate the situation.</p>
+<p>Checkout the second commit as before.</p>
+<pre><code>git checkout 8cdbece</code></pre>
+<p>As experienced previously and as illustrated in Figure 2, this checkout will generate a detached HEAD warning.</p>
+<p>Now, make a change to Circle.java, add and commit: here are the instructions and response (Figure 4).</p>
+<p><img src="img/39.png" alt="Figure 4"></p>
+<p>The log output is shown in Figure 5.</p>
+<p><img src="img/40.png" alt="Figure 5"></p>
+<p>Notice that the 3rd commit is not included. </p>
+<p>Let&#39;s check what branches are present:</p>
+<pre><code>git branch</code></pre>
+<p>Here&#39;s the output:</p>
+<p><img src="img/41.png" alt="Figure 6"></p>
+<p>The master branch is present as one would expect. However an anonymous branch (<em>detached from cc5990f</em>) has also been created.</p>
+<p>Let&#39;s clean this up as follows:</p>
+<pre><code>git branch branch-det-head
+git checkout branch-det-head</code></pre>
+<p>These commands generate output similar to that shown in Figure 7.</p>
+<p><img src="img/42.png" alt="Figure 7"></p>
+<p>What we have done is to create a new branch named <em>branch-det-head</em> and checked out this branch. </p>
+<ul>
+<li>We are now in a position to continue to make changes to the repository on this branch.</li>
+<li>Should we so wish, we could push this branch to the remote repository.</li>
+<li>Or we could, once development on this branch was completed, merge the branch into our master branch. This is dealt with in a later step.</li>
+</ul>
+<p>Note that we could have combined these last two commands into a single command as follows:</p>
+<pre><code>git checkout -b branch-det-head</code></pre>
+<p><img src="img/43.png" alt="Figure 8: List local branches, checked-out branch denoted by asterisk"></p>
 
   </div>
  

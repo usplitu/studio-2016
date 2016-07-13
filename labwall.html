@@ -517,7 +517,7 @@ figcaption
     </a>
     <div class="content">
       <div class="description">
-         <p>The lab describes how a two-person team might collaborate to use Git to manage a project. Individually owned and shared material is used to demonstrate where conflicts may be expected and how to resolve them when they arise.</p>
+         <p>Scenario: you have forgotten somehow to exclude a file or folder from your .git repo, have already added the material to the index, committed and pushed to your remote repo. Now you wish to rectify the situation. Here is how to do so:- Assume the folder you wish to exclude is <code>tmp</code>. Add it to the .gitignore file and save.<code>// File: .gitignore......tmp</code>Run these commands:<code>git rm -r --cache tmpgit add .git commit -m &#39;excluding tmp &amp; cleaning local cache&#39; # or some such messagegit push</code></p>
 
       </div>
     </div>
